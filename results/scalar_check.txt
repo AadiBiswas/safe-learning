@@ -1,0 +1,43 @@
+A. critical lambda (p > 1): numeric threshold vs (p-1)^(p-1)/p^p
+  p=1.25  numeric=0.534992243981138  formula=0.534992243981138  diff=1.1e-16
+  p=1.5   numeric=0.384900179459750  formula=0.384900179459751  diff=5.6e-17
+  p=2     numeric=0.250000000000000  formula=0.250000000000000  diff=2.8e-17
+  p=3     numeric=0.148148148148148  formula=0.148148148148148  diff=2.8e-17
+  p=5     numeric=0.081920000000000  formula=0.081920000000000  diff=1.4e-17
+  p=10    numeric=0.038742048900000  formula=0.038742048900000  diff=6.9e-18
+
+B. p = 2 fixed points: roots*theta vs (1 +- sqrt(1-8 delta theta))/(4 delta)
+  max relative difference over 9 cases: 1.8e-15
+
+C. coupling: any policy's consistent set contains the max-intensity one
+  80000 steps, inclusion violations: 0
+
+D. eta = +delta gives the largest U_T among random disturbance sequences
+  random sequences beating eta = +delta: 0 / 500; lower endpoint pinned at theta*: yes
+
+E. uniform trap: theta* in [U0 - 2 delta U0^p, U0], common observation every step
+  p=2: predicted diameter 0.900000, after 50 steps [2.100000, 3.000000] -> 0.900000
+  p=0.5: predicted diameter 0.800000, after 50 steps [3.200000, 4.000000] -> 0.800000
+  p=1: predicted diameter 0.400000, after 50 steps [1.600000, 2.000000] -> 0.400000
+
+F. p = 2 basins and passage time from v_c = p/(p-1) near lam_c
+  lam=0.2: v- = 1.381966, v+ = 3.618034; just below v+ moves: True; just above v+ stuck: True
+  lam=0.24: v- = 1.666667, v+ = 2.500000; just below v+ moves: True; just above v+ stuck: True
+  lam_c - lam = 1e-2: steps = 24, steps * sqrt(gap) = 2.400
+  lam_c - lam = 1e-3: steps = 81, steps * sqrt(gap) = 2.561
+  lam_c - lam = 1e-4: steps = 262, steps * sqrt(gap) = 2.620
+  lam_c - lam = 1e-5: steps = 834, steps * sqrt(gap) = 2.637
+  lam_c - lam = 1e-6: steps = 2644, steps * sqrt(gap) = 2.644
+  lam_c - lam = 1e-7: steps = 8367, steps * sqrt(gap) = 2.646
+  lam_c - lam = 1e-8: steps = 26464, steps * sqrt(gap) = 2.646
+  fitted exponent of steps vs (lam_c - lam): -0.5057 (saddle-node prediction -0.5)
+  at lam = lam_c: max phi over a fine grid = 0.00e+00 (<= 0)
+
+G. p <= 1
+  p=1, lam=0.5: roots [2.0], v after 1e5 steps from 1e3: 2.000000
+  p=1, lam=1.0: roots [], v after 1e5 steps from 1e3: 1000.000000
+  p=0.5, lam=2.0: roots [5.828427], v after 1e5 steps from 1e3: 5.828427
+  p=0.5, lam=20.0: roots [401.997512], v after 1e5 steps from 1e3: 401.997512
+
+H. favourable disturbances (+delta then -delta) identify theta* exactly
+  [L, U] = [1.300000000000, 1.300000000000] for theta* = 1.3

@@ -1,0 +1,10 @@
+random instances: 3000; game value agrees with 'no trap of diameter > eps': 3000/3000
+max (experiments used by an optimal strategy) / (|Theta| - 1): 1.000  (bound: 1)
+minimal trap sizes among non-identifiable instances: {2: 10792, 3: 404, 4: 11}
+non-identifiable although every pair is identifiable on its own: 30
+non-local example n=3: Theta identifiable: False; proper subsets identifiable: 3/3, max experiments 1; minimal traps [3]
+non-local example n=4: Theta identifiable: False; proper subsets identifiable: 10/10, max experiments 1; minimal traps [4]
+non-local example n=5: Theta identifiable: False; proper subsets identifiable: 25/25, max experiments 1; minimal traps [5]
+non-local example n=6: Theta identifiable: False; proper subsets identifiable: 56/56, max experiments 1; minimal traps [6]
+non-local example n=7: Theta identifiable: False; proper subsets identifiable: 119/119, max experiments 1; minimal traps [7]
+3-SAT reduction: 400/400 agree (satisfiable <=> trap <=> not identifiable); 232 satisfiable
