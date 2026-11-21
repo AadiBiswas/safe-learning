@@ -167,7 +167,7 @@ Take $\Theta_0=[L_0,U_0]$ with $L_0>0$, $\mathcal U=[0,1/L_0]$, $g=\theta x-1$ a
 - **Q-K2 (continuum analogue of T3).** Is there one policy that achieves, for each $\theta^\*$, the instance-wise optimum $\lim\operatorname{diam}\Theta_t=D(\theta^\*)$, the largest closed trap containing $\theta^\*$?
   - In the scalar model, maximum safe intensity does this, asymptotically (S2, S8).
   - In general the myopic argument of T3 breaks, since strictly shrinking moves need not terminate. X2 shows the instance-wise limit may be approached but not reached.
-- **Q-K3.** Under (L), is $T(\varepsilon)$ bounded by a modulus of continuity of $g$ and $h$ and the covering numbers of $\Theta_0$? This would give quantitative horizons.
+- **Q-K3.** Under (L), is $T(\varepsilon)$ bounded by a modulus of continuity of $g$ and $h$ and the covering numbers of $\Theta_0$? This would give quantitative horizons. *Answered in Stage 2 (§7): yes, through the margin $\mu(\varepsilon)$ (Q1′), and no margin-free bound exists (Q2). Q-K5 asks to bound $\mu(\varepsilon)$ itself.*
 - **Q-K4.** Is there a "robust" variant without (L): define traps using the closure of the graph of $\mathcal S$ (i.e. relaxing safety by an infinitesimal), and prove a characterization that holds always? X1 suggests that the relaxed traps are what the adversary can actually hold.
 
 ## 6. Relation to the literature
@@ -180,3 +180,79 @@ Take $\Theta_0=[L_0,U_0]$ with $L_0>0$, $\mathcal U=[0,1/L_0]$, $g=\theta x-1$ a
 
   No characterization of the kind of K1 appeared in the sections I read.
 - **Viability theory** (Aubin) provides the template for Lemmas 1–3 (closedness of capture/viability kernels under upper semicontinuity), but I have not checked a specific theorem against this statement.
+
+---
+
+## 7. Stage 2: quantitative learnability (2026-11-22)
+
+K1 gives a uniform horizon $T(\varepsilon)$, but no estimate of it. This section gives one, explains why it must involve a margin, and records how the deadlock boundary behaves under perturbation. Hypotheses and notation are those of §§1–2. Observations are scalar, $\mathcal Y(\theta,u)=[h(\theta,u)-\delta_u,h(\theta,u)+\delta_u]$, with $h(\cdot,u)$ uniformly $L_h$-Lipschitz, and $w_K(u)=\max_Kh(\cdot,u)-\min_Kh(\cdot,u)$.
+
+**Distinguishability margin.** For a closed set $K$,
+$$\Delta(K)=\sup_{u\in\mathcal S(K)}\bigl[w_K(u)-2\delta_u\bigr].$$
+- $K$ is a trap iff $\Delta(K)\le0$, by Helly in dimension 1.
+- **$\Delta(K)>0$ alone does not give progress in diameter.** An informative experiment may only shave a thin sliver off $K$.
+
+> **Theorem Q1 (packing horizon).** Suppose there is $\mu>0$ such that every closed $K\subseteq\Theta_0$ with $\operatorname{diam}K\ge\varepsilon$ has a safe $u$ with $w_K(u)\ge2\delta_u+\mu$. Then the policy "play such a $u$" achieves $\operatorname{diam}\Theta_T<\varepsilon$ uniformly, with
+> $$T\le M\!\left(\Theta_0,\tfrac{\mu}{2L_h}\right)\le\left(1+\tfrac{4L_hD}{\mu}\right)^{d}\qquad(\Theta_0\subset\mathbb R^d,\ \operatorname{diam}\Theta_0\le D),$$
+> where $M(\cdot,r)$ is the largest cardinality of an $r$-separated subset (the packing number).
+
+*Proof.*
+- Fix a step with current set $K$, the chosen $u$, and the report $y$. Let $m=\min_Kh$ and $M=\max_Kh$, so $M-m\ge2\delta_u+\mu$.
+- **One extreme is excluded with margin.** The retained set is $\{\theta\in K : \lvert h(\theta,u)-y\rvert\le\delta_u\}$, whose $h$-values lie in $[y-\delta_u,y+\delta_u]$. One of $y-\delta_u\ge m+\mu/2$ or $y+\delta_u\le M-\mu/2$ must hold; otherwise $2\delta_u>M-m-\mu\ge2\delta_u$.
+- **A ball is removed.** Say the first holds, and let $\theta_t$ attain $m$. Every $\theta\in K$ with $\lVert\theta-\theta_t\rVert<\mu/(2L_h)$ has $h(\theta,u)<m+\mu/2$, so it is removed. The other case is symmetric.
+- **Counting.** So step $t$ removes from the current set the open ball of radius $r=\mu/(2L_h)$ around a point $\theta_t$ of that set. Later centres lie in later sets, hence outside all earlier balls. The centres are therefore pairwise $\ge r$ apart, so there are at most $M(\Theta_0,r)$ of them.
+- The volume bound is the standard one. ∎
+
+> **Corollary Q1′ (K1 made quantitative).** Under the hypotheses of K1, with $h$ jointly continuous and $L_h$-Lipschitz in $\theta$: if every closed trap has diameter $<\varepsilon$, then
+> $$\mu(\varepsilon):=\min\{\Delta(K) : K\text{ closed},\ \operatorname{diam}K\ge\varepsilon\}>0,$$
+> and $T(\varepsilon)\le M(\Theta_0,\mu(\varepsilon)/(4L_h))$.
+
+*Proof.*
+- **$\Delta$ is lower semicontinuous** on $\mathcal K$. Given $K_n\to K$, take a near-optimal $u\in\mathcal S(K)$, use (L) to get $u_n\in\mathcal S(K_n)$ with $u_n\to u$, and use joint continuity of $w$ and $\delta$.
+- The family $\{K : \operatorname{diam}K\ge\varepsilon\}$ is compact, so $\Delta$ attains its minimum there. That minimum is positive, because no member is a trap.
+- Apply Q1 with margin $\mu(\varepsilon)/2$. ∎
+
+> **Proposition Q2 (the bound has the right shape).**
+> - (a) *Exponent $d$ and scale $L_h/\mu$ are necessary.*
+>   - **Instance.** $\Theta_0=[0,1]^d$, with always-safe "bump" experiments $h_q(\theta)=A\max(0,1-\lVert\theta-q\rVert/r)$ for $q\in\Theta_0$, amplitude $A=2\delta+\mu$, so $L_h=A/r$.
+>   - **The margin hypothesis holds** for every $\varepsilon>r$. A set of diameter $\ge\varepsilon$ contains $q$ and a point at distance $\ge r$ from $q$, so $w=A$.
+>   - **The adversary.** It always reports $y=\delta$. Each experiment then removes at most the ball of radius $r\mu/A=\mu/L_h$ around its centre.
+>   - **Lower bound.** Reaching diameter $<\varepsilon$ requires removing all of $[0,1]^d$ except a set of diameter $<\varepsilon$, so $T\ge(1-\omega_d\varepsilon^d)/(\omega_d(\mu/L_h)^d)$. This matches Q1 up to constants depending on $d$.
+> - (b) *A margin is necessary.* With $d=1$, $\operatorname{diam}\Theta_0=1$ and fixed Lipschitz constants, horizons can be arbitrarily long.
+>   - **Instance.** X2 with the trap moved to $[0,\beta]$ for $\beta\uparrow\varepsilon$.
+>   - **Horizon.** $T(\varepsilon)\ge\log_2\frac{1/2}{\varepsilon-\beta}$, while $L_g$ and $L_h$ are fixed.
+>   - **Margin.** Here $\mu(\varepsilon)\to0$.
+>
+> So no bound $F(d,\varepsilon,L_g,L_h)$ without a margin parameter exists, and covering numbers replace cardinality exactly when a uniform informativeness margin is available.
+
+*Proof.*
+- (a) The volume argument as stated.
+- (b) The computation of X2, with threshold $\tfrac12$ replaced by $\beta$. ∎
+
+**Answer to the brief's question 5.**
+- Yes. The qualitative K1 horizon becomes $T(\varepsilon)\le M(\Theta_0,\mu(\varepsilon)/4L_h)$, a covering-number bound in place of Stage 1's cardinality bound $\lvert\Theta_0\rvert-1$.
+- The margin $\mu(\varepsilon)$ is positive under the K1 hypotheses but uncontrolled near the critical tolerance $D^\*$. Both the exponent $d$ and the dependence on the margin are necessary (Q2).
+- Safety slack enters only through (L), i.e. through whether $\mu(\varepsilon)>0$. A quantitative form of (L), such as a modulus for the strictly safe approximation, would be needed to bound $\mu(\varepsilon)$ from the data of $g$ and $h$. That is open (Q-K5).
+
+### 7.1 The boundary of informational deadlock
+
+> **Proposition Q3 (no universal rate).**
+> - **Instance.** In X2, replace the probe response $\tfrac12+\tfrac s2$ by $\tfrac12+f(s)$, for any continuous increasing $f$ with $0<f(s)<s$ on $(0,1]$ and $f(0)=0$. Use $h=\max(0,2\delta+c(\theta-\tfrac12-f(s)))$, which is continuous and Lipschitz in $\theta$.
+> - **Result.** The worst-case excess $m_t-\tfrac12$ follows the iteration $x_{t+1}=f(x_t)$.
+>   - $f(x)=x/2$ gives geometric decay.
+>   - $f(x)=x-x^2$ gives $x_t\sim1/t$.
+>   - Any decreasing sequence $x_t\downarrow0$ arises, by interpolating $f(x_t)=x_{t+1}$.
+>
+> So the approach to an asymptotic obstruction has **no universal rate**. Rates are a property of the probe family, not of the trap structure.
+
+*Proof.* As in X2: the adversary's report $y=\delta$ leaves $[0,\tfrac12+f(s)]$, and the optimal probe is $s=m_t-\tfrac12$. ∎
+
+> **Proposition Q4 (discontinuity under safety relaxation).** For $\gamma\ge0$, let $V(\gamma)$ be the minimax limiting diameter when safety is relaxed to $g\le\gamma$. $V$ is non-increasing. In X1, $V(0)\ge\tfrac12$ but $V(\gamma)\le0.02$ for every $\gamma>0$: once $m_t<\tfrac12+\gamma$, the sharp experiment $u=0$ is safe. So **the attainable accuracy can jump under an arbitrarily small relaxation of the safety standard**.
+>
+> Conversely, under the density condition of Lemma 0, closed traps of the relaxed models converge to traps of the original. That is, $\limsup_{\gamma\downarrow0}D^\*(\gamma)\le D^\*(0)$, by the argument of A4(a) with $G\le\gamma_n$ in place of $G\le-L_gh_n$.
+
+*Proof.* Monotonicity holds because relaxation enlarges every $\mathcal S(K)$. The X1 computation is in §3. The limit argument follows A4(a) verbatim. ∎
+
+**Status of the remaining question.** $D^\*(\gamma)\le D^\*(0)$ always holds, by monotonicity. Under density, is $\lim_{\gamma\downarrow0}D^\*(\gamma)=D^\*(0)$? Relaxation can unblock experiments with $0<G(K,u)\le\gamma$. These are informative on a trap $K$ only with margins that tend to 0, but they are still informative. I have neither a proof nor a counterexample (Q-K4′).
+
+**Terminology.** I introduce no new object. An "asymptotic obstruction", as in X1, is exactly a set that is a trap of the *limit* (closure) safety correspondence but not of $\mathcal S$ itself. The precise version is Q-K4: the relaxed-trap characterization of §5. Q4 shows that relaxed traps, not exact traps, govern what is attainable once safety is allowed any slack at all.
