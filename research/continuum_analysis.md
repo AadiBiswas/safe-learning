@@ -220,7 +220,7 @@ $$\Delta(K)=\sup_{u\in\mathcal S(K)}\bigl[w_K(u)-2\delta_u\bigr].$$
 >   - **Lower bound.** Reaching diameter $<\varepsilon$ requires removing all of $[0,1]^d$ except a set of diameter $<\varepsilon$, so $T\ge(1-\omega_d\varepsilon^d)/(\omega_d(\mu/L_h)^d)$. This matches Q1 up to constants depending on $d$.
 > - (b) *A margin is necessary.* With $d=1$, $\operatorname{diam}\Theta_0=1$ and fixed Lipschitz constants, horizons can be arbitrarily long.
 >   - **Instance.** X2 with the trap moved to $[0,\beta]$ for $\beta\uparrow\varepsilon$.
->   - **Horizon.** $T(\varepsilon)\ge\log_2\frac{1/2}{\varepsilon-\beta}$, while $L_g$ and $L_h$ are fixed.
+>   - **Horizon.** $T(\varepsilon)\ge\log_2\frac{1-\beta}{\varepsilon-\beta}$, while $L_g$ and $L_h$ are fixed.
 >   - **Margin.** Here $\mu(\varepsilon)\to0$.
 >
 > So no bound $F(d,\varepsilon,L_g,L_h)$ without a margin parameter exists, and covering numbers replace cardinality exactly when a uniform informativeness margin is available.

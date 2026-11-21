@@ -147,3 +147,69 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 | Q-P1 | Exact complexity of OPTCOUNT with safety; FPT status of TRAP in the number of experiments. |
 | Q-C3 | Uniform adaptivity gap (unchanged). |
 | Q-E1 | Risk-allowance frontier (unchanged; model not fixed). |
+
+---
+
+# Stage 2 additions (2026-11-22)
+
+**Abbreviations.**
+- LI = `research/linear_identifiability.md`
+- WG = `research/witness_geometry.md`
+- AW = `research/approximate_witnesses.md`
+- CO §7 = the Stage 2 section of `research/continuum_analysis.md`
+
+**Checks.** E005 = `scripts/stage2_checks.py`.
+
+## Status changes
+
+| ID | Change |
+|---|---|
+| H1 | **Literature status settled** (LR §7.1). Türker et al. 2023 contains the static model, as self-loop observable partial NFSMs, but proves hardness only for forest size, with dynamics. So it gives an upper bound, not H1's lower bound. H1 is a sharper classification of a special case. |
+| P2 | Unchanged: P-known (Hierons–Türker 2014). |
+| G3 | **Sharpened** by L3: minimal traps have size $\le c(\Theta_0)$, not $c+2$. |
+| Q-K3 | **Answered** (Q1′, Q2): yes, via the margin $\mu(\varepsilon)$, and no margin-free bound exists. |
+| G-O1 | **Still open** (LI §5). The obstruction is identified (L10). |
+
+## New results
+
+| ID | Statement | Status | Proof | Checks |
+|---|---|---|---|---|
+| L1 | Linear model: trap ⇔ every experiment is blocked ($h_K(a)>b$) or blind ($w_K(c)\le2\delta$). | P | LI §2 | E005 §A: 48,520/48,520 |
+| L2 | Hull invariance of the trap, far, safe-set and diameter properties. | P | LI §2 | E005 §B |
+| L3 | Minimal far traps are in convex position; size $\le c(\Theta_0)$. | P | LI §2 | E005 §B (weak: 2 instances) |
+| L4 | A minimum witness may need a non-vertex: $\sigma(K)<\sigma(V(K))$ is possible. | P (example) | LI §2 | E005 §D |
+| L5 | $d=1$: pairs, $O(n^2m)$. | P | LI §3.1 | E005 §E |
+| L6 | NP-complete with $d$ in the input, even with convex position, common $\delta$, and laminar unsafe traces of size $\le2$. | P | LI §3.2 | E005 §H |
+| L7 | XP $O(n^{r+2}m)$ in the number of safety rays $r$; W[1]-hard in $r$ ($d$ unbounded), via multicolored clique. | P | LI §3.3 | E005 §G |
+| L8 | Opposite-ray safety ⇒ pairs at $\varepsilon=0$. | P | LI §3.4 | — |
+| L9 | Aligned parabola: minimal traps of size $n$ in the plane for $n\ge4$. | P | LI §3.4 | E005 §I ($n\le8$) |
+| L10 | An always-safe "not both" constraint forces opposite caps. | P | LI §5 | — |
+| W1 | $\sigma\le r$ (one maximizer per ray); sharp; opposite rays count twice. | P | WG §1 | E005 §C |
+| W2 | $\sigma\le\min(r,\lvert V(K)\rvert,\lvert B(K)\rvert)$; no dimension bound; $\sigma(K)\le\sigma(V(K))$, possibly strictly. | P | WG §2 | E005 §D |
+| W3 | Computing $\sigma$: NP-complete and $(1-o(1))\ln$-inapproximable for linear safety with $d$ unbounded. | P (inapproximability cited, A) | WG §3 | — |
+| W4 | $\sigma$: $d=1$ trivial; planar convex position exact via circular arcs, $O(km\log m)$; planar general polynomial. | P / P / cited (A) | WG §3 | E005 §F: 12,647/12,647 |
+| W5 | $\sigma$ NP-hard in $d=3$, even in convex position (paraboloid lifting of DUDC). | P from cited NP-hardness (A) | WG §3 | — |
+| A1 | Support-function sampling: error $\le2R\rho$. | P (classical) | AW §1 | E005 §J |
+| A2 | $\sigma_\gamma\le N(S^{d-1},\gamma/2R)$, with intrinsic dimension replacing $d$. Lower bound $\Omega((R/\gamma)^{(d-1)/2})$ for the sphere, exactly $\lceil\pi/\arccos(1-\gamma/R)\rceil$ in $d=2$. | P (sharp upper exponent cited) | AW §1 | E005 §J: $\sqrt\gamma\,\sigma_\gamma\to2.227$ (prediction 2.221) |
+| A2′ | Robust Lemma W: a far trap of the $\gamma$-tightened model with $\le\sigma_\gamma+2$ points. | P | AW §1 | — |
+| CandA, CandB | Net perturbations, for nets inside the set: safety tightened by $L_gh$ (A); noise enlarged by $L_hh$ (B). | P | AW §2 | E005 §K: 33,056 pairs |
+| A3 | Two-sided net certificates are sound. | P | AW §3 | — |
+| A4 | Completeness of the upper certificate under density and $D^\*<\varepsilon$, and of the lower certificate for margin-robust traps. | P | AW §3 | — |
+| X5 | Certificates can fail forever: tangential safety (upper); zero-margin traps (lower). | P (example) | AW §3 | — |
+| Q1 | Packing horizon $T\le M(\Theta_0,\mu/2L_h)$ under a uniform informativeness margin $\mu$. | P | CO §7 | — |
+| Q1′ | Under the K1 hypotheses: $\mu(\varepsilon)>0$ and $T(\varepsilon)\le M(\Theta_0,\mu(\varepsilon)/4L_h)$. | P | CO §7 | — |
+| Q2 | Exponent $d$ and scale $L_h/\mu$ are necessary (bump family). Without a margin, horizons are unbounded at fixed $d$, $D$, $L_g$, $L_h$. | P | CO §7 | — |
+| Q3 | No universal approach rate to an asymptotic obstruction. | P | CO §7 | — |
+| Q4 | The attainable accuracy can jump under arbitrarily small safety relaxation (X1). Under density, $\limsup_{\gamma\downarrow0}D^\*(\gamma)\le D^\*(0)$. | P | CO §7 | — |
+
+## Open after Stage 2
+
+| ID | Question |
+|---|---|
+| G-O1 | **Main open problem.** TRAP for the linear model in fixed $d=2$ or $d=3$: P or NP-hard? Partial results and the obstruction are in LI §§4–5. |
+| W-O1 | Is TRAP FPT in the number of safety rays $r$ for fixed $d$? |
+| W-O2 | Planar convex position: an algorithm polynomial in both $n$ and $r$? |
+| Q-K4′ | Under density, is $D^\*(\gamma)\to D^\*(0)$ as the safety relaxation $\gamma\to0$? |
+| Q-K5 | Bound the margin $\mu(\varepsilon)$ from quantitative regularity of $g$, $h$ and $\mathcal S$. |
+| L-O1 | Orthogonal safety and observation directions: any structural effect? |
+| Lit | Confirm Johnson 1982 (DUDC) for rational discrete inputs; confirm the Dudley / AHPV coreset size bound from text. |
