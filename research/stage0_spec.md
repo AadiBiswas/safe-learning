@@ -75,7 +75,7 @@ In the scalar model they happen to share an optimal policy (Prop. S2). Whether t
 - *self-confirming* beliefs (Fudenberg–Levine) and *incomplete learning* (Easley–Kiefer) for learning that stops because the chosen actions are uninformative;
 - *safely reachable set* (Sui et al.) for the closure of certified-safe expansion.
 
-We keep "trap" as a working name only. See `research/literature_review.md` §3 before adopting any name.
+I keep "trap" as a working name only. See `research/literature_review.md` §3 before adopting any name.
 
 ## 5. The scalar model (analysed in `research/scalar_analysis.md`)
 

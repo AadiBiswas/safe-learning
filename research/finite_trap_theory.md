@@ -51,7 +51,7 @@ The Stage 0 statements F1, F2, F5 survive. F1 and F2 were stated only for interv
 - **(1)⇒(2)** is Theorem T2 below.
 - **(2)⇒(3)** is trivial.
 - **(3)⇒(1)**, by contraposition. Let $K$ be a far trap and fix $\theta^\*\in K$.
-  - Whenever $\Theta_t\supseteq K$ we have $\mathcal S(\Theta_t)\subseteq\mathcal S(K)$. So whatever $u_t$ the policy draws, $u_t$ is not informative on $K$.
+  - Whenever $\Theta_t\supseteq K$, $\mathcal S(\Theta_t)\subseteq\mathcal S(K)$. So whatever $u_t$ the policy draws, $u_t$ is not informative on $K$.
   - The adversary therefore has some $y\in\bigcap_{\theta\in K}\mathcal Y(\theta,u_t)$, which is admissible since $\theta^\*\in K$. The new set is $\Theta_{t+1}\supseteq K$.
   - By induction $\operatorname{diam}\Theta_t\ge\operatorname{diam}K>\varepsilon$ for all $t$, on every realization of the policy's randomness. ∎
 

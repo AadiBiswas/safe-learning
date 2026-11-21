@@ -50,7 +50,7 @@ Since $p > 0$, $w(x)$ is strictly decreasing in $x$, so the safe maximum $x = 1/
 > $$\sup_{\eta}\, J(\Theta^\pi_T) \;\ge\; \sup_\eta\, J(\Theta^{\max}_T),$$
 > where "max" plays $x_t = 1/U_t$. Taking $\sup_{\theta^\*}$ on both sides gives the uniform version.
 
-*Proof (coupling).* Fix any adversary sequence $\eta^{\max}$ against the max policy. We build an adversary against $\pi$ with $\Theta^\pi_t \supseteq \Theta^{\max}_t$ for all $t$. Suppose this holds at $t$. Then:
+*Proof (coupling).* Fix any adversary sequence $\eta^{\max}$ against the max policy. I build an adversary against $\pi$ with $\Theta^\pi_t \supseteq \Theta^{\max}_t$ for all $t$. Suppose this holds at $t$. Then:
 - $U^\pi_t \ge U^{\max}_t$, so $\pi$'s action satisfies $x^\pi \le 1/U^\pi_t \le x^{\max}$, and $w^\pi \ge w^{\max}$. If $x^\pi = 0$, then $\Theta^\pi$ is unchanged and the step is trivial.
 - Let $I^{\max} = [a, a + w^{\max}] \ni \theta^\*$. Choose $I^\pi = [b, b + w^\pi]$ with $b = a - (w^\pi - w^{\max})/2$.
   - Then $I^\pi \supseteq I^{\max} \ni \theta^\*$.

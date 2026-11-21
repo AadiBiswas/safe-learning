@@ -22,11 +22,11 @@
   $$R_\epsilon(S) := S \cup \{x \in D \mid \exists x' \in S,\ f(x') - \epsilon - L\,d(x', x) \ge h\},$$
   with iterates $R^n_\epsilon$ and closure $\bar R_\epsilon(S) = \lim_n R^n_\epsilon(S)$. The paper states: "no algorithm that is able to learn $f$ only up to $\epsilon$ will ever be able to establish a decision $x \in D \setminus \bar R_\epsilon(S_0)$ as safe."
 - **Theorem 1.** With high probability SafeOpt is safe at every round, and after $t^\*$ rounds it finds an $\epsilon$-optimal point of $\bar R_\epsilon(S_0)$.
-- **Relation to us.**
+- **Relation to this project.**
   - $\bar R_\epsilon(S_0)$ is a fixed point of certified-safe expansion: exactly the "progressive expansion stops" phenomenon of Direction A.
   - Differences: Lipschitz propagation with a *given* seed, and probabilistic, approximate safety. There the information obtained from an experiment is a point evaluation, not tied to the risk of the experiment.
-  - Our scalar model couples risk and information through the same intensity $x$. That is what produces thresholds in $(\delta, p, U_0)$.
-- **Status.** The "unreachable safe region" idea is **previously established** in this form. Our deadlock phenomena must be positioned against it.
+  - The scalar model here couples risk and information through the same intensity $x$. That is what produces thresholds in $(\delta, p, U_0)$.
+- **Status.** The "unreachable safe region" idea is **previously established** in this form. The deadlock phenomena studied here must be positioned against it.
 
 **M. Turchetta, F. Berkenkamp, A. Krause. *Safe Exploration in Finite Markov Decision Processes with Gaussian Processes.* NeurIPS (NIPS) 2016; arXiv:1606.04753.** — **A**. Extends safe exploration to MDPs with reachability and returnability constraints, and explores "the safely reachable part of the MDP". *Relation:* the dynamics/reachability analogue (Direction D). Not read beyond the abstract.
 
@@ -44,7 +44,7 @@
   - Theorem 3: $\tilde O(T^{2/3})$ when $\Delta = 0$ or $\Delta$ is unknown.
   - No safe-setting lower bound in the sections read.
 - **Relation.**
-  - Their safety constraint is linear in the *same* unknown parameter that is observed. That is our Direction C model with $g = \theta^\top B u - c$.
+  - Their safety constraint is linear in the *same* unknown parameter that is observed. That is the Direction C model with $g = \theta^\top B u - c$.
   - Deadlock is excluded by design: there is an interior safe action and the noise is sub-Gaussian, so repetition averages the noise away.
   - With **bounded worst-case** noise, repetition does not help. The deadlock analysis of `research/scalar_analysis.md` shows exactly what is lost.
 
@@ -60,16 +60,16 @@
   - Bayesian: a belief $\beta$ over MDPs.
   - $\delta$-safety means the agent can return to a home state $s_0$ with probability $\ge \delta$ under the belief.
 - **Theorem 1 (verbatim).** "In general, it is NP-hard to decide whether there exist δ-safe policies with respect to a home state, s0, and a stopping time, T, for some belief, β."
-- **Relation to our F4.** Both say that safety makes a decision problem hard. Theirs concerns the *existence of safe policies* under a probabilistic belief over dynamics. Ours concerns *worst-case identifiability* under robust safety without dynamics, and gives coNP-**completeness** with a contrasting polynomial unconstrained case.
+- **Relation to F4.** Both say that safety makes a decision problem hard. Theirs concerns the *existence of safe policies* under a probabilistic belief over dynamics. F4 concerns *worst-case identifiability* under robust safety without dynamics, and gives coNP-**completeness** with a contrasting polynomial unconstrained case.
 - **Status of F4.** Related, not the same statement. **F4 must cite this.**
 
 ### 1.4 Set-membership identification and information-based complexity
 
-**M. Milanese, A. Vicino. *Optimal estimation theory for dynamic systems with set membership uncertainty: an overview.* Automatica 27(6):997–1009, 1991. DOI 10.1016/0005-1098(91)90134-N.** — **A**. The unknown-but-bounded framework: the feasible parameter set and worst-case optimal estimation. *Relation:* our $\Theta_t$ is their feasible parameter set. Our notions of diameter and irreducible uncertainty are their worst-case estimation errors. **Use their vocabulary.**
+**M. Milanese, A. Vicino. *Optimal estimation theory for dynamic systems with set membership uncertainty: an overview.* Automatica 27(6):997–1009, 1991. DOI 10.1016/0005-1098(91)90134-N.** — **A**. The unknown-but-bounded framework: the feasible parameter set and worst-case optimal estimation. *Relation:* $\Theta_t$ here is their feasible parameter set. The diameter and irreducible-uncertainty notions used here are their worst-case estimation errors. **Use their vocabulary.**
 
 **E. Novak. *On the power of adaption.* J. Complexity 12:199–237, 1996. DOI 10.1006/jcom.1996.0015.** — **A** (the author's page and search summaries). It surveys when adaptive information beats non-adaptive information. In the worst case, for linear problems over convex symmetric sets, adaption gains at most a factor of 2 (Traub–Wasilkowski–Woźniakowski; not read).
-- **Relation.** In our setting the *admissible* information operators depend on the current uncertainty, through $\mathcal S(\Theta_t)$. The classical "adaption does not help" results assume a fixed admissible class.
-- **Observation (ours).** In the scalar model the uniform worst case is achieved by the non-adaptive policy $x \equiv 1/U_0$ (S5): adaption does not help *uniformly*, but it does help instance-wise. Whether there is a uniform adaptivity gap in other safe-identification models is a clean question (register Q-C3).
+- **Relation.** In this setting the *admissible* information operators depend on the current uncertainty, through $\mathcal S(\Theta_t)$. The classical "adaption does not help" results assume a fixed admissible class.
+- **Observation (mine).** In the scalar model the uniform worst case is achieved by the non-adaptive policy $x \equiv 1/U_0$ (S5): adaption does not help *uniformly*, but it does help instance-wise. Whether there is a uniform adaptivity gap in other safe-identification models is a clean question (register Q-C3).
 
 **Not obtained (X), to check:**
 - Schweppe 1968 (IEEE TAC; unknown-but-bounded state estimation);
@@ -101,7 +101,7 @@
 ### 1.7 Games of imperfect information
 
 **J. H. Reif. *The complexity of two-player games of incomplete information.* JCSS 29(2):274–301, 1984. DOI 10.1016/0022-0000(84)90034-5.** — **A**. Knowledge-state constructions and complexity of imperfect-information games, which in general carry an exponential blow-up.
-- *Relation:* our game is a reachability game on the knowledge-state lattice with monotone states. F1 is the standard attractor characterisation specialised to it.
+- *Relation:* the identification game is a reachability game on the knowledge-state lattice with monotone states. F1 is the standard attractor characterisation specialised to it.
 - **F1 is not claimed as a contribution beyond its formulation.**
 
 Not obtained (X): Chatterjee, Doyen, Henzinger & Raskin, *Algorithms for ω-regular games with imperfect information* (LMCS 2007).
@@ -117,7 +117,7 @@ Not obtained (X): Chatterjee, Doyen, Henzinger & Raskin, *Algorithms for ω-regu
 ### 1.8a Test cover
 
 *Test cover / minimum test collection* — **A** (secondary sources only). Finding a *minimum* set of tests that separates all pairs is NP-hard (Garey & Johnson; de Bontridder et al., Math. Program. 98, 2003, inapproximability within $o(\log n)$).
-- *Relation:* F3 shows that *feasibility* (does any separating strategy exist?) is polynomial without safety. F4 shows feasibility becomes coNP-complete with robust safety. This is a different axis from test-cover *minimality*. A minimum-experiments version of our problem inherits the test-cover hardness (Q-F4).
+- *Relation:* F3 shows that *feasibility* (does any separating strategy exist?) is polynomial without safety. F4 shows feasibility becomes coNP-complete with robust safety. This is a different axis from test-cover *minimality*. A minimum-experiments version of the safe problem inherits the test-cover hardness (Q-F4).
 
 ### 1.8b Leads from the generic searches (seen only as search summaries — **A** at best; authors unverified unless stated)
 
@@ -126,7 +126,7 @@ Not obtained (X): Chatterjee, Doyen, Henzinger & Raskin, *Algorithms for ω-regu
   - **The closest current work in set-membership identification. Read in full before Stage 1.** If the summary is accurate, the safety-constrained version is open in that community.
 - **S. Haar, S. Haddad, T. Melliti, S. Schwoon. *Optimal constructions for active diagnosis.* FSTTCS 2013 (LIPIcs, DOI 10.4230/LIPIcs.FSTTCS.2013.527); extended in JCSS 2017.**
   - Per the summaries: active diagnosability is **EXPTIME-complete**, with optimal-memory diagnoser synthesis. Active predictability is also EXPTIME-complete (FSTTCS 2020).
-  - *Relation to F4:* these are dynamical (automaton) models with partial observation. Our static model sits lower, at coNP. The difference — static, worst-case, with safety the only source of coupling — must be made explicit. F4 could plausibly be derived as a special case of their hardness proofs, or be folklore there. **Unresolved.**
+  - *Relation to F4:* these are dynamical (automaton) models with partial observation. The static model here sits lower, at coNP. The difference — static, worst-case, with safety the only source of coupling — must be made explicit. F4 could plausibly be derived as a special case of their hardness proofs, or be folklore there. **Unresolved.**
 - ***Safe exploration for identifying linear systems via robust optimization.*** arXiv:1711.11165. Per the summary: a nominal safe action is assumed, and the paper notes that a one-step safe action can lead to states with no safe successors. Relevant to Direction D.
 - ***Active learning with safety constraints.*** arXiv:2206.11183. Per the summary: safe best-arm identification interpolates between best-arm identification and level-set estimation. Stochastic, with a known safe set assumed (unverified).
 - ***Identifiability and generalizability in constrained inverse reinforcement learning.*** arXiv:2306.00629. Per the summary: identifiability is lost under active inequality constraints. A different problem (IRL), with an analogous phenomenon.
@@ -137,7 +137,7 @@ Not obtained (X): Chatterjee, Doyen, Henzinger & Raskin, *Algorithms for ω-regu
 
 ## 2. Comparison table
 
-| Our item | Closest source | Assessment |
+| Item | Closest source | Assessment |
 |---|---|---|
 | Robust-safe action set $\mathcal S(\Theta_t)$, consistent sets | set-membership identification (Milanese–Vicino); pessimistic safe sets in safe bandits (Amani et al.) | **Previously established** as objects. |
 | Expansion stopping at a fixed point | SafeOpt's $\bar R_\epsilon(S_0)$ | **Previously established** (Lipschitz/GP version). |
@@ -145,7 +145,7 @@ Not obtained (X): Chatterjee, Doyen, Henzinger & Raskin, *Algorithms for ω-regu
 | Max-intensity domination (S2) | none found | **Elementary** coupling argument. Probably known in spirit. Not claimed. |
 | F1 trap characterisation | attractor arguments in reachability games; Reif-style knowledge sets | **Follows from standard results.** The specific formulation is unresolved. Diagnosability literature unread. |
 | Non-locality (pairwise-identifiable but globally deadlocked) | none found | **Potentially distinct.** Simple. Check DES diagnosability. |
-| F4: coNP-completeness under robust safety; polynomial without it | Moldovan–Abbeel (Bayesian MDP, NP-hard existence of safe policies); active diagnosability, EXPTIME-complete (Haar et al.); test cover (minimality) | **Potentially distinct** as a sharp static statement; plausibly a special case of known techniques. **Unresolved** until Haar et al. are read. |
+| F4: coNP-completeness under robust safety; polynomial without it | Moldovan–Abbeel (Bayesian MDP, NP-hard existence of safe policies); active diagnosability, EXPTIME-complete (Haar et al.); test cover (minimality) | *Stage 1:* not subsumed by Haar et al. or Hierons–Türker. The deterministic case is polynomial and known. See §6.4. |
 | Self-confirming / incomplete learning | Fudenberg–Levine; Easley–Kiefer | The conceptual precedent for the whole project. **The paper must frame against these.** |
 
 ## 3. Terminology recommendation
@@ -177,3 +177,122 @@ Not obtained (X): Chatterjee, Doyen, Henzinger & Raskin, *Algorithms for ω-regu
 - Not yet run: "informational deadlock", "learning under endogenous constraints", "self-confirming uncertainty safety", "Rényi–Ulam with forbidden queries", "robust input design with state constraints". **Generic coverage is the most important remaining gap.**
 - Crossref was rate-limited (HTTP 429). Metadata for Fudenberg–Levine and Easley–Kiefer comes from the Econometric Society and RePEc pages as returned by search.
 - PDFs from proceedings and arXiv were returned as raw bytes. SafeOpt was read by local text extraction. The other arXiv papers were read through their HTML renderings.
+
+---
+
+## 6. Stage 1 addendum (2026-11-21): the critical gaps
+
+In Stage 1 I closed the gaps that Stage 0 marked as decisive for originality.
+
+**Access.**
+- PDFs were read through a local text extractor, since the fetch tool returned raw bytes.
+- Where the extractor failed, I say so and quote nothing.
+- Theorem statements are quoted only from text I read.
+
+### 6.1 Sources read in Stage 1
+
+**S. Haar, S. Haddad, T. Melliti, S. Schwoon. *Optimal constructions for active diagnosis.* FSTTCS 2013, LIPIcs 24:527–539, DOI 10.4230/LIPIcs.FSTTCS.2013.527. Extended version: J. Comput. Syst. Sci. (online 2016), DOI 10.1016/j.jcss.2016.04.007.** — **P**.
+- *Read:* the JCSS preprint, §§1–3: the model, the definitions of controller, pilot and active diagnoser, and Theorem 1 with its proof.
+- **Model.**
+  - A finite *live, convergent* LTS. The observable events are partitioned into controllable and uncontrollable ones, and there is an unobservable fault event $f$.
+  - A controller is a map from observation sequences to allowed event sets that always contains the uncontrollable events.
+  - An *active diagnoser* is a controller + diagnoser pair whose controlled system is live, contains no ambiguous infinite observation sequence, and flags exactly the surely-faulty observations.
+- **Theorem 1 (hardness):** "The active diagnosis decision problem is EXPTIME-hard." The proof is a reduction from safety games with imperfect information. A matching EXPTIME upper bound comes from a Büchi game on a $2^{O(n)}$ deterministic automaton.
+- **Comparison with the static model.**
+  - (i) *What is hidden.* Their hidden object is whether a fault *event* has occurred along an evolving run. Mine is a static parameter.
+  - (ii) *What restricts the controller.* Their controllability set is fixed, the same in every state; the only constraint is liveness. Mine is uncertainty-dependent admissibility, the defining feature of this project.
+  - (iii) *Observations.* Theirs are projections of events. Mine are bounded worst-case noise.
+- **Verdict: their results do not subsume F4/H1 or T1.**
+  - Embedding my static problem in theirs would require encoding hypothesis-dependent admissibility through liveness or forbidden states. That is plausible, but it gives only an EXPTIME upper bound, which is weaker than coNP.
+  - Their EXPTIME-hardness relies on dynamics, so it does not transfer down to the static case.
+
+**R. M. Hierons, U. C. Türker. *Distinguishing Sequences for Partially Specified FSMs.* NFM 2014, LNCS 8430:62–76, DOI 10.1007/978-3-319-06200-6_5.** — **F**.
+- *Read:* the author manuscript, Brunel repository, §§1–4.
+- **Model.** A PSFSM $(S,X,Y,\delta,\lambda,D)$ with *deterministic* outputs; $D\subseteq S\times X$ is the domain of defined inputs.
+- **Definition 4 (ADS).** A tree whose node with state set $S'$ applies an input $x$ "defined in all states in $S'$", with further restrictions on merging states.
+- **Results.**
+  - Abstract: "it is possible to check the existence of an ADS in polynomial time but the corresponding problem for PDSs is PSPACE-complete".
+  - The ADS result is proved by reduction to a completely specified FSM and Lee–Yannakakis.
+- **Comparison.**
+  - "Defined in all states of the current set" *is* robust safety.
+  - A static instance with deterministic observations is a PSFSM with only self-loops, so ADS existence is exactly my exact identifiability. **My P2 (deterministic observations ⇒ polynomial), at $\varepsilon=0$, is a special case of their theorem.** I record it as known.
+  - Their work does not treat nondeterministic outputs, which is where H1's hardness lives.
+
+**U. C. Türker, R. M. Hierons, K. El-Fakih, G. Barlas. *Incomplete adaptive distinguishing sequences for non-deterministic FSMs.* IEEE TSE 49(9):4371–4389, 2023.** — **A**.
+- The PDF text could not be extracted, so only search summaries were seen.
+- Per those summaries:
+  - machines may be partial and nondeterministic, and are assumed observable;
+  - checking the existence of a set of $k$ incomplete ADSs separating all pairs is PSPACE-hard.
+- *Relation:* the closest class that contains my static nondeterministic model. Its lower bound presumably uses dynamics, which is unverified. **This is the single most important paper still to read for H1.**
+
+**R. Alur, C. Courcoubetis, M. Yannakakis. *Distinguishing tests for nondeterministic and probabilistic machines.* STOC 1995, 363–372, DOI 10.1145/225058.225161.** — **A**.
+- Secondary sources only. Per those sources:
+  - preset distinguishing is PSPACE-complete;
+  - adaptive distinguishing is EXPTIME-complete;
+  - the problem is polynomial for "observable" machines.
+- *Relation:* the general dynamic, nondeterministic case. The same upper-bound-only relation as above.
+
+**A. Shakouri, H. J. van Waarde, M. K. Camlibel. *Experiment design for set-membership identification: from prior knowledge to universal inputs.* arXiv:2607.00844, July 2026.** — **P**.
+- *Read:* §§I–IV-A verbatim, and parts of the appendix proofs; the remaining sections only via summaries.
+- **Model.**
+  - LTI system $x^+=Ax+Bu+w$ with $\lVert w\rVert\le\epsilon$. The body uses the Euclidean norm, while the abstract says $\ell_\infty$; this is unresolved.
+  - The prior is a set $\Sigma_{pk}$ of $(A,B)$.
+  - An input is *universal* if every dataset it can generate from any system in $\Sigma_{pk}$ is informative, i.e. the consistent set has radius $\le\rho$.
+- **Results read.**
+  - Theorem 7 (single input, open prior, noiseless): universal iff persistently exciting of order $n+1$.
+  - From the proof of Proposition 26: noisy *exact* identification requires a "uniformly discrete" prior set.
+- **Constraints.**
+  - Design is **offline**: the intro contrasts "online methods" with "offline methods" and the paper takes the latter.
+  - The formulation in §§II–III has **no input or state constraints**. "safety considerations" appears only as motivation.
+  - A future-work sentence on trajectory constraints is reported by a summary but not verified.
+- **Verdict.** Different design class (offline, unconstrained), different system class (dynamic LTI) and a different question (universality of inputs). **It does not address uncertainty-dependent admissibility.** The uniform-discreteness result parallels my noise floor $D^\*$ (K2) and S5.
+
+### 6.2 Search summaries only (A)
+
+- *Paoli–Lafortune, Safe diagnosability (Automatica 2005).* Per summaries: fault detection must occur before any forbidden string in the failed mode, characterized by conditions on a "safe diagnoser". This is **passive** diagnosis with a deadline. It is not about admissibility of probing actions, and so is not a competitor to T1/H1.
+- *Hyafil–Rivest 1976; Laber–Nogueira 2004* (DOI 10.1016/j.dam.2004.06.002). Per summaries: minimum-depth decision trees are NP-hard and hard to approximate within $\ln$ factors. Used only for §6 of `research/complexity_analysis.md`.
+- *arXiv:2608.00215 (2026).* Per summary: a parameter component is identifiable from safe actions iff it lies in the span of the safe feature vectors. **The safe set is fixed and known there,** so there is no circularity. It is the unconstrained analogue of my G4.
+- *arXiv:2601.08648, "Safe Language Generation in the Limit" (2026).* Per summary: impossibility of a "safe identification in the limit" notion in language learning. Different model (Gold-style).
+- *Camilleri et al., Active Learning with Safety Constraints (NeurIPS 2022, arXiv:2206.11183)* is unchanged from Stage 0: stochastic, with a known safe set.
+- *Optimal decision trees with noisy outcomes* (arXiv:2312.15357): approximation algorithms, without safety.
+
+### 6.3 Assumption-by-assumption comparison
+
+| | This project | Active diagnosis (Haar et al.) | PSFSM ADS (Hierons–Türker) | ND distinguishing (ACY 1995; Türker et al. 2023) | Set-membership design (Shakouri et al.) | SafeOpt (Sui et al.) | Self-confirming / incomplete learning |
+|---|---|---|---|---|---|---|---|
+| Hidden object | static parameter | evolving run (fault occurrence) | initial state of an evolving machine | initial state | static system matrices | static function | static parameter (belief) |
+| Admissible actions | **depend on the current uncertainty** (robust safety) | fixed controllable set; liveness | input must be defined in all current states (**same as mine**) | partial inputs (2023) | unconstrained | depend on certified-safe set (GP, Lipschitz) | unconstrained; cost-driven |
+| Identification notion | uniform, worst-case; also instance-wise (T3) | uniform (all runs) | uniform | uniform | uniform over prior | high-probability | asymptotic belief |
+| Observations | bounded worst-case, set-valued | event projection | deterministic | nondeterministic | bounded noise | stochastic (sub-Gaussian) | stochastic |
+| Horizon | finite, uniform (T1, K1) | infinite runs, bounded delay | finite tree | finite tree | finite offline | finite, high-probability | infinite |
+| Policy class | adaptive, history-dependent | finite-memory controllers | adaptive tree | adaptive / preset | **offline (open-loop)** | adaptive | Bayesian optimal |
+| Complexity | coNP-complete (H1); P for deterministic | EXPTIME-complete | P (ADS); PSPACE-complete (PDS) | EXPTIME-complete / PSPACE-hard | — | — | — |
+
+### 6.4 Verdicts on the Stage 0 candidate contributions
+
+| Item | Verdict after Stage 1 |
+|---|---|
+| T1 (trap characterization) | **Known in technique.** It is the finite-game attractor argument, and for deterministic outputs it is a special case of PSFSM ADS existence. The general set-valued formulation is a formulation, not a theorem to claim. |
+| P2 (deterministic + safety ⇒ P) | **Known** (Hierons–Türker 2014), in the self-loop special case. |
+| H1 / F4 (coNP-complete; binary observations with unsafe sets of size 2 suffice; P at size 1) | **Not found in the sources read.** Not subsumed by Haar et al., Hierons–Türker or ACY: those either have deterministic outputs (P) or dynamic hardness that does not transfer. **Remaining question:** does Türker et al. 2023, or the observable-NFSM testing literature, contain a static or self-loop hardness result? |
+| T3 (one myopic policy is instance-optimal) | Not found; simple enough to be folklore. Low novelty weight. |
+| T5, G1′ (σ governs minimal traps; exact local-to-global) | Not found. **Potentially original.** It is the natural structural statement behind H1 and P4. |
+| G2b (realizable trap families under Helly-$h$ observations) | Not found. Potentially original, but minor. |
+| K1–K3 (continuum, with (L)) | Not found as such. The technique is viability-kernel style. The (L) condition and the counterexamples X1–X3 are the substance. **Potentially original as a formulation**, with standard tools. |
+| Self-confirming / incomplete learning | Remains the conceptual precedent (Stage 0). Unchanged. |
+
+### 6.5 Remaining literature questions
+
+Precise, in priority order:
+1. **Türker–Hierons–El-Fakih–Barlas 2023, full text.** Is there a hardness result for observable nondeterministic *partial* FSMs that survives restricting all transitions to self-loops? If so, H1 is a corollary. Next: chase its references on "possibilistic" or "partial nondeterministic" ADS.
+2. **El-Fakih, Yevtushenko et al.** on adaptive distinguishing test cases for nondeterministic FSMs (HAL hal-01815008), with the same question.
+3. **Test sequencing in fault diagnosis** (Pattipati and co-authors): are there "test applicability depends on the fault hypothesis" models with complexity results?
+4. **Viability theory** (Aubin 1991): find the exact lemma behind K1's Lemma 2, to cite rather than re-prove.
+5. **Alur–Courcoubetis–Yannakakis 1995, full text.** Confirm the theorem statements quoted here from secondary sources.
+
+**Search log, Stage 1.**
+- Queries: Haar et al. PDF; Hierons–Türker partially specified FSM ADS; arXiv:2607.00844; Türker et al. 2023; ACY 1995; Paoli–Lafortune safe diagnosability; "adaptive identification with inapplicable tests"; "safe identifiability impossibility"; minimum-height decision trees.
+- Downloads:
+  - HAL returned an access-denied page.
+  - CORE returned HTTP 403.
+  - The Türker et al. 2023 PDF used fonts the extractor could not decode.

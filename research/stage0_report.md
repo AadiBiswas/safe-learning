@@ -50,7 +50,7 @@ Stage 0 asked:
 
 ## 4. What appears already known
 
-- **"Certified-safe expansion stops at a fixed point."** Established in GP safe optimisation. Sui et al. (ICML 2015) define a reachability closure $\bar R_\epsilon(S_0)$ and state that nothing outside it can ever be certified. **Our deadlock must be positioned against this.**
+- **"Certified-safe expansion stops at a fixed point."** Established in GP safe optimisation. Sui et al. (ICML 2015) define a reachability closure $\bar R_\epsilon(S_0)$ and state that nothing outside it can ever be certified. **The deadlock results here must be positioned against this.**
 - **"Learning stops short of the truth because the chosen actions are uninformative."** Established in economics: incomplete learning (Easley–Kiefer 1988) and self-confirming equilibrium (Fudenberg–Levine 1993). **The project's motivating question needs to cite these up front.**
 - **Feasible-set (set-membership) estimation.** Standard (Milanese–Vicino 1991).
 - **F1's technique.** Standard for finite games on knowledge states.

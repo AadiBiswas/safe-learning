@@ -69,3 +69,81 @@
 ## Literature status
 
 See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and F5 are "potentially distinct", pending the active-diagnosis complexity literature (Haar–Haddad–Melliti–Schwoon) and safe diagnosability (Paoli–Lafortune).
+
+---
+
+# Stage 1 additions (2026-11-21)
+
+**Abbreviations.**
+- FT = `research/finite_trap_theory.md`
+- CA = `research/complexity_analysis.md`
+- CO = `research/continuum_analysis.md`
+- GO = `research/geometric_obstructions.md`
+
+**Checks.**
+- E003 = `scripts/stage1_finite.py` → `results/stage1_finite.txt`
+- E004 = `scripts/critical_scaling.py` → `results/critical_scaling.txt`
+
+**Additional status codes.**
+- **P-known**: proved here, and also a special case of a published result.
+- **K?**: possibly known; literature question open.
+
+## Status changes to Stage 0 items
+
+| ID | Change |
+|---|---|
+| F1 | Generalized to arbitrary set-valued observations, an adaptive adversary and randomized policies (T1). Uniform ⇔ eventual ⇔ within $n-1$ steps. Still **P-std**. Its deterministic special case is **P-known** (Hierons–Türker 2014). |
+| F2 | Generalized: *every* myopic policy succeeds within $n-1$ steps (T2). |
+| F3 | **Corrected (strengthened).** The pairwise test needs no Helly property. Downward closure gives it for every observation model (B1). |
+| F4 | **Strengthened** to H1. Both directions re-proved and degenerate inputs handled. The $n=1$ padding is necessary. Not subsumed by the literature read (LR §6.4). |
+| F5 | **Strengthened** to T5: the exact minimum is $n$ experiments, and binary deterministic observations suffice. |
+| S4a | **Sharpened** to S4a′: exact constant for all $p>1$, with explicit hypotheses on start and target. |
+| Q-F1 | **Resolved: yes** (T3). |
+| Q-F2 | **Largely resolved** (CA §0 classification). The fixed-dimension geometric case remains open (G-O1). |
+| Q-F3 | **Resolved, conditionally** (K1–K3). True under (L); false without it (X1). |
+| Q-F4 | Partly addressed. OPTCOUNT is NP-hard without safety (via literature, **A**), coNP-hard with safety, and in PSPACE. |
+
+## New results
+
+| ID | Statement | Status | Proof | Checks |
+|---|---|---|---|---|
+| T1 | Characterization for set-valued observations; randomization does not help against adaptive noise. | P-std; deterministic case P-known | FT §2 | E003 §A: 4000/4000 |
+| Ob | Oblivious noise with randomization can identify inside a trap. Adaptivity of the noise is essential to T1. | P (example) | FT §2 | — |
+| T2 | No far trap ⇒ every myopic safe-informative policy succeeds within $n-1$ experiments. Tight. | P | FT §3 | E003 §A |
+| T3 | One myopic policy achieves the instance-wise minimax terminal diameter $D(\theta^\*)$ for every $\theta^\*$ simultaneously. | P; K? (folklore-level) | FT §3 | — |
+| T4 | Restriction is hereditary. Independent products: trap ⇔ both projections are traps, and counts add. No closure under union, intersection, subsets, supersets, or projection of joint products. | P | FT §4 | E003 §I (explicit counterexamples; random products) |
+| W / G1 | Every far trap contains a far trap of size $\le\sigma(K)+2$ ($\max(2,\sigma)$ at $\varepsilon=0$). | P | FT §5, GO §1 | E003 §E |
+| T5 | A minimal trap of size $k\ge3$ has $\sigma=k$, hence $\ge k$ experiments unsafe on it. The cycle trap realizes it with $n$ experiments and binary deterministic observations. | P | FT §5 | E003 §H ($n\le8$) |
+| T6 | Every family of subsets is a trap family. | P | FT §6 | E003 §J (all $2^{11}$ families, $n=4$) |
+| M | $\mathrm{TRAP}\in\mathrm{NP}$, $\mathrm{SAFEID}\in\mathrm{coNP}$ under the explicit and interval encodings. | P | CA §1 | — |
+| B1 | No safety ⇒ pairwise test, for any metric and any observation model. | P | CA §2 | E003 §D |
+| H1 | NP-complete trap existence with (a) binary observations and $\lvert U\rvert\le2$; (b) $\lvert U\rvert\le3$ and $n+m\lceil\log 2n\rceil$ experiments; (c) intervals of common width; (d) linear safety and linear sensing in unbounded dimension. | P; originality open (LR §6.5) | CA §3 | E003 §F (309/309 and 146/146, including degenerate formulas), §G |
+| P2 | Deterministic observations ⇒ split recursion, $O(n^2m)$. | P-known | CA §4 | E003 §B |
+| P3 | $\lvert U\rvert\le1$ ⇒ Horn closure, $O(n^3m)$. With H1(a), a dichotomy in the unsafe-set size. | P | CA §4 | E003 §C |
+| P4 | $\sigma\le k$ ⇒ $O(n^{k+2}m)$. Covers nested safety, 1-D thresholds (pairs), $k$ functionals, $k$ experiments (XP). | P | CA §4 | E003 §E |
+| P5 | Promise of small minimal traps ⇒ enumeration. | P | CA §4 | — |
+| G1′ | **Exact local-to-global** ($\varepsilon=0$): "identifiable iff all $k$-subsets are" holds for all sub-instances ⇔ minimal traps have size $\le k$ ⇔ $\sigma\le k$ on minimal traps. | P | GO §1 | via T5, E003 §H |
+| G2 | Observation Helly number $h$ ⇒ a set is a trap if all its $\le h$-subsets are. This gives nothing for trap existence. | P | GO §2 | — |
+| G2b | Characterization of the trap families realizable with Helly-$h$ observations. With $h=2$, intervals realize them: 1218 of 2048 families on 4 points. | P | GO §2 | E003 §J |
+| G3 | Halfspace safety: $\sigma\le\lvert\operatorname{ext}\operatorname{conv}K\rvert$. $d=1$ ⇒ pairs. $d=2$ ⇒ minimal traps of every size (convex position, linear sensing). Unbounded $d$ ⇒ NP-complete. | P | GO §3 | E003 §H |
+| G4 | Homogeneous experiments where safety and sensing share one functional ⇒ traps are hereditary ⇒ pairwise. Explains C1. | P | GO §4 | (C1 tests) |
+| K1 | Continuum: under compactness, continuity of $g$, closed-graph $\mathcal Y$ and (L), no closed trap of diameter $\ge\varepsilon$ ⇒ uniform finite horizon. | P | CO §2 | — |
+| K2 | Closed traps form a closed family. The minimax asymptotic diameter is $D^\*=\max$ closed-trap diameter, reached in finite time above $D^\*$. | P | CO §2 | scalar case = S5 |
+| K3 | Under (L): eventual ⇒ uniform. | P | CO §2 | — |
+| X1–X4 | Counterexamples: no (L) (admissibility in the limit); the critical tolerance; non-closed graph; joint discontinuity. | P | CO §3 | — |
+| S4a′ | Fold passage time $\sqrt\epsilon N\to(\operatorname{artanh}\rho+\operatorname{artanh}s)/\sqrt{ab}$, with $ab=\tfrac12p^{p-1}(p-1)^{2-p}$. Same exponent for relaxation at $v_-$. | P (Euler/normal-form argument) + N | SA §6a | E004: within 0.1% for $p=1.5,2,3$ |
+
+## Open after Stage 1
+
+| ID | Question |
+|---|---|
+| G-O1 | Complexity of trap existence for halfspace safety in fixed dimension $d\ge2$. |
+| G-O2 / Q-C2 | Large minimal traps with full scaling but different safety and sensing functionals? |
+| G-O3 | A continuum analogue of $\sigma$ and a continuum local-to-global theorem. |
+| Q-K1 | Eventual ⇒ uniform under continuity alone, without (L)? |
+| Q-K2 | A universal instance-optimal policy in the continuum. |
+| Q-K3 | Quantitative horizons $T(\varepsilon)$. |
+| Q-K4 | A relaxed-trap characterization without (L). |
+| Q-P1 | Exact complexity of OPTCOUNT with safety; FPT status of TRAP in the number of experiments. |
+| Q-C3 | Uniform adaptivity gap (unchanged). |
+| Q-E1 | Risk-allowance frontier (unchanged; model not fixed). |

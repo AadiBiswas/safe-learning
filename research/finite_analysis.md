@@ -6,7 +6,7 @@
 
 ## 1. Setting
 
-- **Parameters and tolerance.** $\Theta_0$ is a finite set with a metric; we use points on $\mathbb R$ with $\operatorname{diam} K = \max K - \min K$. The tolerance is $\varepsilon \ge 0$, and $\varepsilon = 0$ means exact identification.
+- **Parameters and tolerance.** $\Theta_0$ is a finite set with a metric; I use points on $\mathbb R$ with $\operatorname{diam} K = \max K - \min K$. The tolerance is $\varepsilon \ge 0$, and $\varepsilon = 0$ means exact identification.
 - **Actions.** A finite set $\mathcal U$, with a safety relation: $u$ is safe for $\theta$ iff $g(\theta, u) \le 0$. Write $S(K) = \{u : u \text{ safe for every } \theta \in K\}$.
 - **Observations.** $\mathcal Y(\theta, u)$ is a nonempty set. In the main case, $\mathcal Y(\theta, u) = [h(\theta, u) - \delta,\ h(\theta, u) + \delta] \subset \mathbb R$.
 - **Game.**
