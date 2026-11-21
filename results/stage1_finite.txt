@@ -1,0 +1,52 @@
+A. Characterization (F1') and experiment count (F2') with set-valued observations
+  [ok] identifiable <=> no far trap: 4000/4000
+  [ok] optimal experiment count <= n - 1: max ratio 1.000
+  [ok] equality tests, n = 3: value n - 1
+  [ok] equality tests, n = 5: value n - 1
+  [ok] equality tests, n = 8: value n - 1
+  [ok] identifiable => every subset identifiable (so myopic play never gets stuck)
+
+B. Splitting recursion (exact always; laminar when observations are deterministic)
+  [ok] deterministic: split recursion = exhaustive: 3000/3000
+  [ok] deterministic: nodes <= 2n - 1: max nodes/(2n-1) = 0.462
+  [ok] general observations: split recursion = exhaustive: 3000/3000
+
+C. Closure algorithm when every unsafe set has size <= 1
+  [ok] |U| <= 1: closure = exhaustive: 3000/3000
+
+D. No safety constraints: pairwise check, arbitrary set-valued observations
+  [ok] no safety: pairwise = exhaustive: 3000/3000
+
+E. Safety-witness bound (G1): every far trap K contains a far trap of size <= sigma(K) + 2
+  [ok] witness bound
+  (sigma, |minimal trap|) histogram: {(0, 2): 646, (1, 2): 4546, (1, 3): 28, (2, 2): 2244, (2, 3): 90, (2, 4): 1, (3, 3): 84, (3, 4): 2, (4, 4): 1}
+  [ok] nested safety, eps = 0: pairwise = exhaustive: 2000/2000
+  [ok] 1-D threshold safety: endpoints of a trap form a trap: 2000/2000
+
+F. 3-SAT reductions (binary observations; |U| <= 3 and |U| <= 2)
+  [ok] reduction U<=3: SAT <=> trap <=> not identifiable: 309/309, 166 satisfiable (degenerate cases included)
+  [ok] reduction U<=2: SAT <=> trap <=> not identifiable: 146/146, 122 satisfiable (degenerate cases included)
+
+G. Binary observations are interval observations
+  [ok] same traps after the interval encoding: 1500/1500
+
+H. Large minimal traps
+  [ok] n = 3: cycle (binary, deterministic, n actions) and convex-position (linear) traps
+  [ok] n = 4: cycle (binary, deterministic, n actions) and convex-position (linear) traps
+  [ok] n = 5: cycle (binary, deterministic, n actions) and convex-position (linear) traps
+  [ok] n = 6: cycle (binary, deterministic, n actions) and convex-position (linear) traps
+  [ok] n = 7: cycle (binary, deterministic, n actions) and convex-position (linear) traps
+  [ok] n = 8: cycle (binary, deterministic, n actions) and convex-position (linear) traps
+  [ok] eps = 0: a minimal trap of size k >= 3 meets >= k unsafe sets (random instances)
+
+I. Closure properties of the trap family (explicit counterexamples)
+  [ok] not closed under union: {0,1}, {1,2} traps, {0,1,2} not
+  [ok] not closed under intersection: {0,1,2}, {0,1,3} traps, {0,1} not
+  [ok] not closed under subsets: cycle trap of size 3, no 2-subset is a trap
+  [ok] not closed under supersets: union example
+  [ok] hereditary: traps of a restriction = traps contained in it
+  [ok] disjoint-action product: traps = sets with trap projections; counts add
+  [ok] joint-action product: A identifiable, B trivial, A x B is a trap
+
+J. Realizability of trap families (n = 4, all 2^11 families)
+  [ok] every family is a trap family; interval-condition families realized by intervals: 1218/2048 families satisfy the interval (Helly-2) condition
