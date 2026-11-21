@@ -122,6 +122,36 @@ There is strict progress at $v$ iff $\varphi(v) := v - 1 - \lambda v^p > 0$. Not
 - **General $p > 1$.** The same normal-form argument gives $n = \Theta\bigl((\lambda_c - \lambda)^{-1/2}\bigr)$, with a $p$-dependent constant. This is not computed beyond $p = 2$.
 - **Final approach.** The rate $\bar g'(v_-) = 1 - \Theta\bigl(\sqrt{\lambda_c - \lambda}\bigr)$, so the final approach to $v_-$ has the same scaling.
 
+## 6a. Stage 1 audit of the critical scaling (2026-11-21)
+
+Stage 0 stated "$n=\Theta((\lambda_c-\lambda)^{-1/2})$" with the constant computed for $p=2$ only. I now make the claim precise and separate the quantities involved.
+
+**Setting.**
+- Fix $p>1$, $\theta^\*$ and the instance-wise worst-case noise $\eta\equiv\delta$, so that $v_{t+1}=\bar g(v_t):=\min(v_t,1+\lambda v_t^p)$ with $\lambda=2\delta\theta^{\*\,p-1}$.
+- Write $\epsilon=\lambda_c-\lambda>0$ and $v_c=p/(p-1)$.
+- Put $a=\tfrac12p(p-1)\lambda_cv_c^{p-2}$ and $b=v_c^p$, so that $ab=\tfrac12p^{p-1}(p-1)^{2-p}$ (equal to 1 at $p=2$).
+- Near $(v_c,\lambda_c)$: $1+\lambda v^p-v=az^2-b\epsilon+O(\lvert z\rvert^3+\epsilon\lvert z\rvert)$, with $z=v-v_c$.
+- The fixed points are $v_\pm=v_c\pm\sqrt{b\epsilon/a}+O(\epsilon)$.
+
+> **Proposition S4a′.** Fix $\rho\in[0,1)$ and $s\in(0,1)$. Let $N_\epsilon$ be the number of iterations from $v_0=v_c+\rho(v_+-v_c)$ until $v_t\le v_c+s(v_--v_c)$. Then
+> $$\sqrt\epsilon\,N_\epsilon\;\to\;\frac{\operatorname{artanh}\rho+\operatorname{artanh}s}{\sqrt{ab}}\qquad(\epsilon\downarrow0).$$
+
+*Proof.*
+- Rescale $z=\sqrt\epsilon\,w$. One iteration is $w\mapsto w+\sqrt\epsilon\,(aw^2-b)+O(\epsilon)$, uniformly for $\lvert w\rvert\le2\sqrt{b/a}$.
+- This is the Euler scheme with step $\sqrt\epsilon$ for $\dot w=aw^2-b$, whose error is $O(\sqrt\epsilon)$ on compact time intervals.
+- The ODE travels from $w_0=\rho\sqrt{b/a}$ to $-s\sqrt{b/a}$ in time $\int\frac{dw}{b-aw^2}=\frac{\operatorname{artanh}\rho+\operatorname{artanh}s}{\sqrt{ab}}$.
+- It crosses the target level transversally, since $\dot w\ne0$ there. Euler convergence then gives the limit. ∎
+
+**Hypotheses that matter.**
+1. The start must scale with the basin, $v_0-v_c=O(\sqrt\epsilon)$. A start at a fixed $v_0>v_c$ lies above $v_+$ once $\epsilon$ is small, and then never moves.
+2. The constant diverges like $\tfrac12\log\frac1{1-\rho}$ as $\rho\to1$, so the start time is unbounded near the barrier $v_+$.
+3. The target must be a fixed fraction of the way to $v_-$. Reaching an absolute tolerance $\eta$ of $v_-$ adds a final geometric phase governed by the next item.
+4. **Local relaxation at $v_-$.** $1-\bar g'(v_-)=2\sqrt{ab\epsilon}+O(\epsilon)$, so the relaxation time $1/\lvert\log\bar g'(v_-)\rvert\sim1/(2\sqrt{ab\epsilon})$ has the same exponent.
+5. At $\epsilon=0$, $1+\lambda_cv^p-v\ge0$ everywhere, so *nothing* moves. The scaling is a statement about the approach, not about the critical point itself.
+6. All of this is **instance-wise** (fixed $\theta^\*$, worst-case noise). The uniform minimax diameter has no critical slowing down: it is reached in one experiment (S5).
+
+**Check (E004, `scripts/critical_scaling.py`).** For $p\in\{1.5,2,3\}$ and $(\rho,s)\in\{(0,0.5),(0,0.99),(0.9,0.5)\}$, $\sqrt\epsilon N_\epsilon$ agrees with the prediction to within $0.1\%$ at $\epsilon=10^{-7}$. The relaxation rate agrees to 4 digits. At $p=2$ the earlier constant $2.646$ is confirmed (prediction $2.6467$).
+
 ## 7. Dependence on the prior; discontinuities
 
 Fix $v_0 > v_c$ and let $\lambda_1(v_0)$ be the value at which $v_+(\lambda_1) = v_0$.

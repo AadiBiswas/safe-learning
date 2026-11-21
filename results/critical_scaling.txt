@@ -1,0 +1,18 @@
+Passage time N through the fold, scaled by sqrt(eps); prediction (artanh rho + artanh s)/sqrt(ab).
+rate = (1 - g'(v_-)) / sqrt(eps), prediction 2 sqrt(ab).
+
+p = 1.5: sqrt(ab) = 0.658037
+  rho = 0.0, s = 0.5: predicted 0.8348; observed 1e-3: 0.8222, 1e-5: 0.8317, 1e-7: 0.8345
+  rho = 0.0, s = 0.99: predicted 4.0220; observed 1e-3: 3.8896, 1e-5: 4.0066, 1e-7: 4.0205
+  rho = 0.9, s = 0.5: predicted 3.0721; observed 1e-3: 3.1307, 1e-5: 3.0801, 1e-7: 3.0728
+  rate: predicted 1.3161; observed 1e-3: 1.3341, 1e-5: 1.3179, 1e-7: 1.3163
+p = 2.0: sqrt(ab) = 1.000000
+  rho = 0.0, s = 0.5: predicted 0.5493; observed 1e-3: 0.5376, 1e-5: 0.5471, 1e-7: 0.5493
+  rho = 0.0, s = 0.99: predicted 2.6467; observed 1e-3: 2.5614, 1e-5: 2.6373, 1e-7: 2.6459
+  rho = 0.9, s = 0.5: predicted 2.0215; observed 1e-3: 2.0555, 1e-5: 2.0270, 1e-7: 2.0220
+  rate: predicted 2.0000; observed 1e-3: 2.0000, 1e-5: 2.0000, 1e-7: 2.0000
+p = 3.0: sqrt(ab) = 1.500000
+  rho = 0.0, s = 0.5: predicted 0.3662; observed 1e-3: 0.3795, 1e-5: 0.3668, 1e-7: 0.3662
+  rho = 0.0, s = 0.99: predicted 1.7644; observed 1e-3: 1.7076, 1e-5: 1.7582, 1e-7: 1.7639
+  rho = 0.9, s = 0.5: predicted 1.3477; observed 1e-3: 1.3914, 1e-5: 1.3503, 1e-7: 1.3481
+  rate: predicted 3.0000; observed 1e-3: 2.9544, 1e-5: 2.9953, 1e-7: 2.9995
