@@ -296,3 +296,86 @@ Precise, in priority order:
   - HAL returned an access-denied page.
   - CORE returned HTTP 403.
   - The Türker et al. 2023 PDF used fonts the extractor could not decode.
+
+---
+
+## 7. Stage 2 addendum (2026-11-22)
+
+### 7.1 The partial nondeterministic FSM dependency: resolved
+
+**U. C. Türker, R. M. Hierons, G. Barlas, K. El-Fakih. *Incomplete adaptive distinguishing sequences for non-deterministic FSMs.* IEEE TSE 49(9):4371–4389, 2023. DOI 10.1109/TSE.2023.3291137.** — **F**.
+- *Read:* the author-accepted version (White Rose eprint 200869, CC-BY). Text was extracted with the macOS PDFKit framework; the earlier stdlib extractor failed on this file. I read the abstract, §§1–3, §5 and the references.
+
+**Model.**
+- An FSM is a tuple whose transition relation $h\subseteq S\times X\times Y\times S$ may be nondeterministic.
+- It is **observable**: $(s,x,y)$ determines the next state (Def. 2.2).
+- It may be **partial**: "input $x$ is defined for a set of states $S'$ if for every state $s\in S'$, $x$ is defined for $s$". Undefined inputs are motivated by environments where applying them "might lead to undesirable consequences such as damage to equipment or safety issues".
+- An adaptive test case is "defined in $S'$" only if its first input is defined in $S'$ and the rest is defined on every successor set (Def. 3.2). States are separated iff $\mathrm{out}(s,\mu)\cap\mathrm{out}(s',\mu)=\varnothing$ (Def. 3.4).
+
+**Results.**
+- Theorem 5.1: "The K-Complete Forest problem is PSPACE-hard", where K-Complete Forest asks for at most $K$ *incomplete* ADSs separating all pairs.
+- The proof takes $K=1$ on the deterministic FSM $M(\mathcal A)$ built from an FA-INT instance. That FSM's transitions are the automata's transitions plus a sink, so the machine has genuine dynamics. The construction is quoted from Hierons–Türker 2015 (*Computer Journal* 58(11)).
+- No complexity result is stated for the existence of a single ADS for partial observable nondeterministic machines. The paper cites Kushik et al. 2016 and El-Fakih et al. 2018 for ADS existence algorithms and length bounds; their complexity status is reported as unknown in secondary sources.
+
+**The seven questions of the Stage 2 brief.**
+1. *Where is the nondeterminism?* In the output and the next state. Because the machine is observable, the next state is a function of the output. With self-loops ($s'=s$), only the output is nondeterministic.
+2. *Can the hardness reduction be restricted to self-loops?* **No.** The FA-INT reduction encodes automaton runs in the state dynamics, and it is a deterministic machine besides. Under self-loops, $K=1$ forests for deterministic outputs are polynomial (Hierons–Türker 2014), so the reduction cannot survive.
+3. *Does their admissibility coincide with robust safety?* **Yes, exactly.** "Defined in all states of the current set" is $u\in\mathcal S(K)$.
+4. *Do their observation semantics coincide?* **Yes.** $\mathrm{out}(s,x)$ is a set-valued observation correspondence, and separation quantifies over all output traces, i.e. adaptive worst-case noise.
+5. *Does their complexity result apply to static parameters?* The model *contains* the static case: an observable partial nondeterministic FSM with only self-loops. But the hardness is not proved there.
+6. *Does it imply coNP-hardness under binary observations and unsafe sets of size $\le2$?* **No.**
+7. *Does it have an analogue of the safety-witness number?* **No.** Its contributions are generation heuristics, invertible sequences and the forest-size hardness.
+
+**Classification, in the brief's terms.**
+- Türker et al. 2023 provides **an upper bound but not the necessary lower bound**, through the containing model. Its own hardness concerns a different problem (forest size) and uses dynamics.
+- H1, P3, L6 and L7 concern the self-loop specialization, where the complexity drops from PSPACE-hard (forests) to coNP-complete (exact identifiability) and to P at unsafe size 1. **This is a specialization producing a substantially sharper classification.** Static models with safety are a natural sub-class of partial observable NFSMs that this literature has not singled out.
+- **Hierons–Türker 2014 (§6.1) remains the one direct overlap:** deterministic outputs, P.
+
+*Still unread:* Kushik et al., STTT 18(3) 2016; El-Fakih–Yevtushenko–Kushik, FAC 30(2) 2018 (abstract only, **A**: existence checking and exponential length bounds for complete observable machines); Hierons–Türker 2015, *Computer Journal*. These concern complete machines or forest size, so they do not bear on the static safety question, but they should be cited.
+
+### 7.2 Geometric optimization and approximation (used in Stage 2)
+
+All access levels are **A**, abstracts or citing papers, unless stated otherwise.
+
+**Halfplane hitting set and cover.**
+- Har-Peled–Lee, "Weighted geometric set cover problems revisited", JoCG 3(1) 2012: an exact polynomial algorithm for minimum-weight covering of points by halfplanes.
+- arXiv:2506.16979, "Minimum-weight half-plane hitting set" (2025): $O(n^{5/2}\log^2n)$.
+- *Use:* W4(c). Planar $\sigma$ is polynomial.
+
+**Discrete unit disk cover.**
+- Johnson 1982, the NP-hardness citation used in Claude–Dorrigiv–Durocher–Fraser–López-Ortiz–Salinger 2009 and later papers. I have not seen Johnson's statement itself.
+- *Use:* W5, via lifting to the paraboloid. **Precise unresolved question:** confirm that Johnson's hardness holds for rational inputs with the discrete (given-centre) variant. The citing papers state it for DUDC.
+
+**ε-nets for halfspaces.**
+- Matoušek–Seidel–Welzl 1990, ε-nets for halfspaces in $\mathbb R^2$ and $\mathbb R^3$ of size $O(1/\varepsilon)$; Brönnimann–Goodrich 1995 for the reweighting approximation. **M**.
+- *Use:* $O(1)$-approximation of $\sigma$ in $d\le3$ (`research/witness_geometry.md` §3).
+
+**ε-kernels and coresets.**
+- Agarwal–Har-Peled–Varadarajan, "Approximating extent measures of points", JACM 51(4) 2004. Confirmed: the definition of an ε-kernel as a subset preserving directional width to relative error ε.
+- *Not confirmed from text:* the size bound $O(\varepsilon^{-(d-1)/2})$ and its origin in Dudley 1974 and Bronshteyn–Ivanov 1975.
+- *Use:* `research/approximate_witnesses.md` A1–A2. I prove the weaker $O((R/\gamma)^{d-1})$ and a matching lower bound in the exponent $(d-1)/2$. The sharp upper bound is attributed, not claimed.
+
+**Set cover inapproximability.** Dinur–Steurer 2014, $(1-o(1))\ln n$. **M**.
+
+**Parameterized complexity.** Multicolored clique is W[1]-hard (standard; e.g. Cygan et al., *Parameterized Algorithms*, 2015). **M**.
+
+**Targeted searches with no direct hits**, for the specific combination of safety-dependent admissibility with identification:
+- geometric active learning under hard constraints;
+- safe experimental design with bounded errors;
+- halfspace-constrained identification;
+- adaptive decision trees with restricted tests;
+- support-function approximation for identification;
+- finite discretization of uncertainty sets.
+
+The adaptive decision tree literature with noisy outcomes (arXiv:2312.15357) studies approximation without admissibility constraints.
+
+### 7.3 Updated verdicts
+
+| Item | Verdict |
+|---|---|
+| H1, P3 (static, safety, nondeterministic: coNP-complete; P at unsafe size 1) | **Not subsumed.** Türker et al. 2023 contains the model but proves hardness only for forest size, with dynamics. Hierons–Türker 2014 covers only deterministic outputs. |
+| L1–L3 (support-function trap characterization; hull invariance; convex-position minimal traps) | Elementary consequences of the definitions. Not found stated. Low novelty weight, high expository value. |
+| L6 (NP-complete for laminar size-$\le2$ unsafe sets, convex position, common noise) | Not found. A strengthening of H1. |
+| L7 (W[1]-hard in the number of safety directions) | Not found. **Potentially original.** |
+| W4(b), W5 ($\sigma$ polynomial in the plane, NP-hard in space) | Direct consequences of known geometric hitting-set results. **Not a contribution.** The contribution is only the connection. |
+| A1–A4, Q1–Q2 (approximate witnesses, certificates, packing horizons) | The tools are classical: support-function sampling, covering numbers. The certificate soundness and completeness (A3–A4) and the packing horizon (Q1) for safe identification were not found. **Potentially original as formulations.** |

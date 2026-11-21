@@ -1,0 +1,44 @@
+A. Support-function characterization of traps (all subsets, exact)
+  [ok] trap <=> every experiment blocked (h_K(a) > b) or blind (w_K(c) <= 2 delta): 48520/48520 subsets; generic/collinear/repeated/circle, d = 1, 2, 3
+
+B. Convex-hull invariance (planar)
+  [ok] K is a trap iff its set of hull vertices is
+  [ok] minimal traps of size >= 3 are in convex position: 2 such minimal traps seen
+
+C. Directional bound sigma(K) <= r(K) (number of blocked positive rays)
+  [ok] sigma <= r on every subset: 359 subsets with sigma = r >= 2
+  [ok] opposite normals count separately (two points, sigma = 2 = r)
+
+D. A minimum witness may need a non-extreme point
+  [ok] traces {v0,c}, {v1,c}, {v2,c}: sigma = 1 via the centroid, 3 using hull vertices only
+
+E. d = 1: endpoint pairs decide trap existence
+  [ok] pairs = exhaustive: 1500/1500
+
+F. sigma in planar convex position = circular-arc hitting set
+  [ok] circular-arc greedy = brute-force minimum hitting set: 12647/12647 (instance, K) pairs
+
+G. Multicolored clique -> trap existence with k safety rays
+  [ok] clique <=> trap; at most k safety rays: 150/150, 126 with a clique
+
+H. Laminar unsafe families of size <= 2 (binary observations)
+  [ok] laminar reduction: SAT <=> trap: 63/63, 60 satisfiable
+
+I. Aligned safety and observation (c_u = a_u): minimal trap sizes
+  minimal trap sizes {2: 11925, 3: 44, 4: 2}; instances where traps are not hereditary: 630
+  aligned parabola n = 3: minimal traps [2]
+  aligned parabola n = 4: minimal traps [4]
+  aligned parabola n = 5: minimal traps [5]
+  aligned parabola n = 6: minimal traps [6]
+  aligned parabola n = 7: minimal traps [7]
+  aligned parabola n = 8: minimal traps [8]
+
+J. Support-function sampling bound and the sqrt(R/gamma) witness count (floats)
+  [ok] 0 <= h_K(a) - h_F(a) <= 2 R rho (R = 1): max ratio to 2 R rho = 0.015
+  unit circle, margin gamma = 1/50: minimum approximate witness size 16, times sqrt(gamma) = 2.263 (prediction pi/sqrt(2) = 2.221)
+  unit circle, margin gamma = 1/200: minimum approximate witness size 32, times sqrt(gamma) = 2.263 (prediction pi/sqrt(2) = 2.221)
+  unit circle, margin gamma = 1/800: minimum approximate witness size 63, times sqrt(gamma) = 2.227 (prediction pi/sqrt(2) = 2.221)
+
+K. Net perturbation statements (exact, L-infinity nets, L1 Lipschitz constants)
+  [ok] A: K trap => net F trap under safety tightened by L_g h: 33056 (K, F) pairs
+  [ok] B: net F trap => K trap with noise enlarged by L_h h

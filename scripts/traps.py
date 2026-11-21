@@ -342,3 +342,36 @@ def random_instance(rng, n, m, alphabet=2, p_unsafe=0.25, max_unsafe=None, deter
                 Y.append(set(rng.sample(range(alphabet), rng.randint(1, alphabet))))
         acts.append(action_from_sets(n, sum(1 << t for t in U), Y))
     return Instance(n, acts)
+
+
+def sat_laminar(nvars, clauses):
+    """3-SAT -> trap existence with a LAMINAR family of unsafe sets, each of size <= 2,
+    and binary observations. Like sat_u2, but every clause uses private copies of its
+    literals, tied to the originals by implications whose unsafe sets are singletons."""
+    nvars = max(nvars, 2)
+    n = 2 * nvars + 5 * len(clauses)
+    acts = []
+    for v in range(nvars):
+        T, F = 2 * v, 2 * v + 1
+        acts.append(not_both(n, T, F))
+        acts += bit_actions(n, 1 << T | 1 << F)
+    for j, c in enumerate(clauses):
+        if not c:
+            acts += bit_actions(n, 0)
+            continue
+        l = [lit(x) for x in c] + [lit(c[-1])] * (3 - len(c))
+        base = 2 * nvars + 5 * j
+        s, s2, cp = base, base + 1, (base + 2, base + 3, base + 4)
+        acts.append(not_both(n, s, s2))
+        acts += bit_actions(n, 1 << s | 1 << s2)
+        acts.append(singles_out(n, 1 << cp[0] | 1 << cp[1], s2))
+        acts.append(singles_out(n, 1 << cp[2], s))
+        for orig, copy in zip(l, cp):
+            acts.append(singles_out(n, 1 << orig, copy))   # copy in K => original in K
+            acts.append(singles_out(n, 1 << copy, orig))   # original in K => copy in K
+    return Instance(n, acts)
+
+
+def is_laminar(inst):
+    sets = {U for U, _ in inst.actions if U}
+    return all(not (a & b) or a & b in (a, b) for a, b in itertools.combinations(sets, 2))
