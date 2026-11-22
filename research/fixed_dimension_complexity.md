@@ -85,7 +85,7 @@ That makes $6n+10m$ parameters.
 **Realizing the safety side.** Each unsafe set is a halfplane trace.
 - For $V=\{x\}$: take $a=v_x$, with $b$ strictly between $1=a^\top v_x$ and the next largest value $a^\top z$.
 - For an adjacent pair $V=\{x,y\}$: take $a=v_x+v_y$. On the circle, $a^\top z$ decreases with the angular distance from the bisector of $x,y$. No point lies on the arc between them, so $x,y$ are the two largest values, and $b$ goes between the second and third largest.
-- For $V=\varnothing$: $a=0$, $b=0$.
+- For $V=\varnothing$: $a=0$, $b=1$. *(Stage 4 audit: originally $b=0$, which is safe only at equality; corrected for a strict margin, with no unsafe set changed.)*
 
 **Realizing the observation side.** Each separated pair is realized by a direction.
 - For an antipodal pair $\{x,-x\}$: take $c=v_x$. Then $c^\top x=1$ is the unique maximum and $c^\top(-x)=-1$ the unique minimum, because distinct unit vectors $z$ satisfy $\lvert c^\top z\rvert<1$.
@@ -130,7 +130,7 @@ Finally $\lvert K\rvert\ge2$, since $n\ge1$ gives at least two helpers.
 **Unintended traps.** There are none. The argument characterizes *every* trap of size $\ge2$, because each experiment's kill family was determined exactly.
 
 **Size and encoding.**
-- $6n+10m$ parameters and $\le7n+13m$ experiments.
+- $6n+10m$ parameters and $\le7n+13m$ experiments. *(Stage 4 audit: exactly $5n+11m'+(m-m')\le5n+11m$, where $m'$ is the number of nonempty clauses; see `research/planar_hardness_audit.md`.)*
 - Circle points $v(k)$ have numerators and denominators $\le1+k^2=O((n+m)^2)$.
 - Thresholds are midpoints of such values, and the noise radii are explicit rational functions of them.
 - All bit lengths are $O(\log(n+m))$ per coordinate. ∎

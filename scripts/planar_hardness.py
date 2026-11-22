@@ -61,7 +61,7 @@ def build(nvars, clauses):
     def unsafe_halfplane(V):
         """(a, b) with trace exactly V: V empty, a singleton, or a cyclically adjacent pair."""
         if not V:
-            return (Fr(0), Fr(0)), Fr(0)
+            return (Fr(0), Fr(0)), Fr(1)        # 0 <= 1 with margin 1: safe for everything
         a = tuple(sum(pts[i][t] for i in V) for t in range(2))
         vals = sorted((dot(a, pts[i]) for i in range(n)), reverse=True)
         k = len(V)
