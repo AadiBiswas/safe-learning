@@ -1,6 +1,6 @@
 # Stage 4 — Mathematical audit of Stages 0–3
 
-*2026-11-24. For each area I re-derived the result from its definitions and record either "verified" or the correction made. Corrections are applied in the source documents, with a dated note there. D2 has its own audit in `research/planar_hardness_audit.md`.*
+*2026-11-21. For each area I re-derived the result from its definitions and record either "verified" or the correction made. Corrections are applied in the source documents, with a dated note there. D2 has its own audit in `research/planar_hardness_audit.md`.*
 
 ## 0. Corrections made in Stage 4
 

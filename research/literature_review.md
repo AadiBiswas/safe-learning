@@ -299,7 +299,7 @@ Precise, in priority order:
 
 ---
 
-## 7. Stage 2 addendum (2026-11-22)
+## 7. Stage 2 addendum (2026-11-21)
 
 ### 7.1 The partial nondeterministic FSM dependency: resolved
 
@@ -382,7 +382,7 @@ The adaptive decision tree literature with noisy outcomes (arXiv:2312.15357) stu
 
 ---
 
-## 8. Stage 3 addendum (2026-11-23): novelty check for the fixed-dimension results
+## 8. Stage 3 addendum (2026-11-21): novelty check for the fixed-dimension results
 
 ### 8.1 Searches
 
@@ -415,7 +415,7 @@ Results:
 
 ---
 
-## 9. Stage 4: final theorem-level originality audit (2026-11-24)
+## 9. Stage 4: final theorem-level originality audit (2026-11-21)
 
 ### 9.1 Primary-source status
 

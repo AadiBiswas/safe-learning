@@ -2,7 +2,7 @@
 
 ## Fundamental limits of information acquisition under safety constraints
 
-*Sourcebook for manuscript development. 2026-11-24. Repository `~/code/safe-learning`, branch `main`. The final commit and test count are in §14.*
+*Sourcebook for manuscript development. 2026-11-21. Repository `~/code/safe-learning`, branch `main`. The final commit and test count are in §14.*
 
 **How to use this document.**
 - §§1–12 state the mathematics with complete hypotheses, and point to the authoritative proof location for each result.
@@ -336,4 +336,4 @@ python3.12 -m venv .venv && .venv/bin/pip install numpy pytest
 
 - Branch `main`, pushed to the private remote.
 - Test suite: 51 tests, all passing at the Stage 4 commit.
-- Stage commits: Stage 0 `5e9a078`/`04a5193`; Stage 1 to `1856949`; Stage 2 to `fb88530`; Stage 3 to `eeff06a`; Stage 4 from `a564d1e`. The final Stage 4 hash is recorded in `research/stage4_report.md`.
+- Stage commits: Stage 0 `5e9a078`/`04a5193`; Stage 1 to `7944cc7`; Stage 2 to `4e4b5b5`; Stage 3 to `1cf7d6e`; Stage 4 `6469030` to `48190ba`, followed by a date and hash correction.

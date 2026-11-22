@@ -1,6 +1,6 @@
 # Stage 4 report — Separation of safety and sensing, final audit, consolidation
 
-*2026-11-24. Details:*
+*2026-11-21. Details:*
 - `research/aligned_identifiability.md`
 - `research/planar_hardness_audit.md`
 - `research/complexity_map.md`

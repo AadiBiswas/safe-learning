@@ -1,6 +1,6 @@
 # Stage 2 report — Geometric and computational limits of safe identifiability
 
-*2026-11-22. This is a self-contained handoff. Proofs are in the files cited, every ID is in `research/theorem_register.md`, and the computations are ledger entry E005.*
+*2026-11-21. This is a self-contained handoff. Proofs are in the files cited, every ID is in `research/theorem_register.md`, and the computations are ledger entry E005.*
 
 ## 1. Where Stage 2 started
 
@@ -19,7 +19,7 @@ Stage 2 asked:
 
 1. **Does safe identification stay hard under simple linear geometry?**
    - **In unbounded dimension, yes, in its most restrictive form.** Hardness holds even with all of: parameters in convex position (affinely independent), one common noise radius, and unsafe traces of size $\le2$ forming a laminar family (L6).
-   - **Parameterized by the number $r$ of safety directions, it is W[1]-hard** (L7). *(Corrected 2026-11-23: W[1]-hardness rules out $f(r)\,\mathrm{poly}(n,m)$ algorithms unless FPT $=$ W[1]. It does not show that the exponent $r+2$ of the XP algorithm $O(n^{r+2}m)$ is optimal; an exponent lower bound would need, e.g., ETH. The earlier wording "essentially optimal in form" overstated this.)*
+   - **Parameterized by the number $r$ of safety directions, it is W[1]-hard** (L7). *(Corrected 2026-11-21: W[1]-hardness rules out $f(r)\,\mathrm{poly}(n,m)$ algorithms unless FPT $=$ W[1]. It does not show that the exponent $r+2$ of the XP algorithm $O(n^{r+2}m)$ is optimal; an exponent lower bound would need, e.g., ETH. The earlier wording "essentially optimal in form" overstated this.)*
    - **In fixed dimension $d\ge2$ it is open.** I could not prove hardness or find an algorithm. Lemma L10 identifies the exact obstruction (§5).
 2. **Which structures restore tractability?**
    - **Restore it:**

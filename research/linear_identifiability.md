@@ -1,6 +1,6 @@
 # Stage 2 — Safe identifiability under linear safety and linear observations
 
-*2026-11-22. Definitions follow `research/finite_trap_theory.md`. Code: `scripts/linear.py`. Exhaustive checks: `scripts/stage2_checks.py`, output `results/stage2_checks.txt` (ledger E005). Agreement with brute force is a regression check, never part of a proof.*
+*2026-11-21. Definitions follow `research/finite_trap_theory.md`. Code: `scripts/linear.py`. Exhaustive checks: `scripts/stage2_checks.py`, output `results/stage2_checks.txt` (ledger E005). Agreement with brute force is a regression check, never part of a proof.*
 
 ## 0. Summary
 

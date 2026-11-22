@@ -1,6 +1,6 @@
 # Stage 4 — Aligned safety and sensing
 
-*2026-11-24. Code: `scripts/linear.py` (`aligned`, `aligned_2sat_trap`, `aligned_sat_u2`). Checks: `scripts/stage4_checks.py`, output `results/stage4_checks.txt` (ledger E008).*
+*2026-11-21. Code: `scripts/linear.py` (`aligned`, `aligned_2sat_trap`, `aligned_sat_u2`). Checks: `scripts/stage4_checks.py`, output `results/stage4_checks.txt` (ledger E008).*
 
 ## 0. Summary
 

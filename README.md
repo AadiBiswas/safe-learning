@@ -4,7 +4,7 @@
 
 An agent learns an unknown parameter from experiments. It may only run experiments that are certified safe for every parameter still consistent with its data. Knowledge decides which experiments are allowed, and experiments decide what becomes known. The project asks when this loop allows progressive learning and when safety itself makes further learning impossible. The emphasis is on algorithm-independent statements: thresholds, characterisations, impossibility results and complexity.
 
-## Status: Stage 4 (2026-11-24), research consolidated
+## Status: Stage 4 (2026-11-21), research consolidated
 
 - **Main theorem.** Exact safe identifiability with linear safety and linear bounded-error observations is polynomial in dimension 1, and coNP-complete in every fixed dimension $\ge2$, already on the unit circle. It survived an independent audit, with a standalone verifier (`scripts/verify_d2.py`).
 - **Safety versus sensing.** With aligned safety and observation functionals, the experiment family of the hardness proof becomes polynomial (2-SAT). Alignment alone does not help in unbounded dimension.

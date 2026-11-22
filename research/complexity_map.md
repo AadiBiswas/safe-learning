@@ -1,6 +1,6 @@
 # Definitive complexity map of safe identification (Stages 0–4)
 
-*2026-11-24. This file is authoritative for complexity statements; individual documents hold the proofs.*
+*2026-11-21. This file is authoritative for complexity statements; individual documents hold the proofs.*
 
 ## 1. Conventions
 

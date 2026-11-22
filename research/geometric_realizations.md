@@ -1,6 +1,6 @@
 # Stage 3 — Safety, observation and joint geometric realizations
 
-*2026-11-23. Checks: E006 §§B, C, E.*
+*2026-11-21. Checks: E006 §§B, C, E.*
 
 **Definitions.** A combinatorial instance with interval-type observations is given by, for each experiment $u$, an unsafe set $B_u$ and a conflict graph $P_u$ (separated pairs).
 - A **safety realization** in $\mathbb Q^{d_s}$: points $p_i$ and halfspaces $\{a_u^\top p>b_u\}$ with traces exactly $B_u$.

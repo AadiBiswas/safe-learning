@@ -1,6 +1,6 @@
 # Stage 3 report — The critical dimension of safe learning
 
-*2026-11-23. This is a self-contained handoff. Details are in `research/fixed_dimension_complexity.md` (principal), `research/boolean_trap_formulation.md` and `research/geometric_realizations.md`. Every ID is in `research/theorem_register.md`, and the computations are ledger E006.*
+*2026-11-21. This is a self-contained handoff. Details are in `research/fixed_dimension_complexity.md` (principal), `research/boolean_trap_formulation.md` and `research/geometric_realizations.md`. Every ID is in `research/theorem_register.md`, and the computations are ledger E006.*
 
 ## 1. Result in one sentence
 

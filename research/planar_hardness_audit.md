@@ -1,6 +1,6 @@
 # Stage 4 — Independent audit of the planar hardness theorem D2
 
-*2026-11-24.*
+*2026-11-21.*
 - *Scope:* I reconstruct D2 from the definitions, without relying on the Stage 3 text, and record every check.
 - *Verifier:* `scripts/verify_d2.py`, output `results/verify_d2.txt` (ledger E007). It re-derives every intended experiment from the formula and recomputes every geometric quantity with its own exact arithmetic.
 

@@ -1,6 +1,6 @@
 # Manuscript plan (not manuscript text)
 
-*2026-11-24. Repository IDs are kept, and no final numbering is assigned. This file proposes structure only.*
+*2026-11-21. Repository IDs are kept, and no final numbering is assigned. This file proposes structure only.*
 
 ## 1. Theorem hierarchy
 

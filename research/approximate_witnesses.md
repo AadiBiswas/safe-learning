@@ -1,6 +1,6 @@
 # Stage 2 — Approximate safety witnesses and certified discretization
 
-*2026-11-22. This connects the finite witness theory (`research/witness_geometry.md`) to the continuum theorem K1–K3 (`research/continuum_analysis.md`). Checks are in E005 §§J–K.*
+*2026-11-21. This connects the finite witness theory (`research/witness_geometry.md`) to the continuum theorem K1–K3 (`research/continuum_analysis.md`). Checks are in E005 §§J–K.*
 
 ## 0. Summary
 

@@ -1,6 +1,6 @@
 # Stage 3 — The critical dimension of safe identifiability
 
-*2026-11-23. This is the principal Stage 3 document. Notation follows `research/linear_identifiability.md`.*
+*2026-11-21. This is the principal Stage 3 document. Notation follows `research/linear_identifiability.md`.*
 - *Construction:* `scripts/planar_hardness.py`.
 - *Exact checks:* `scripts/stage3_checks.py`, output `results/stage3_checks.txt` (ledger E006).
 - *Status of computation:* no theorem below relies on computation. The checks are regressions against the exhaustive and Boolean reference solvers.

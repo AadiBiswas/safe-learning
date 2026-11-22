@@ -1,6 +1,6 @@
 # Stage 3 — Boolean formulation of informational traps
 
-*2026-11-23. Code: `scripts/boolean.py`. Checks: E006 §A.*
+*2026-11-21. Code: `scripts/boolean.py`. Checks: E006 §A.*
 
 ## 0. Summary
 

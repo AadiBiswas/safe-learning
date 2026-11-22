@@ -1,6 +1,6 @@
 # Stage 2 — Geometry of the safety-witness number
 
-*2026-11-22. Notation follows `research/linear_identifiability.md`.*
+*2026-11-21. Notation follows `research/linear_identifiability.md`.*
 
 **Conventions** (unchanged from Stage 1).
 - For an uncertainty set $K$ and experiment $u$, the **trace** is $T_u(K)=\{\theta\in K : g(\theta,u)>0\}$.

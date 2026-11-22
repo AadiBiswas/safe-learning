@@ -183,7 +183,7 @@ Take $\Theta_0=[L_0,U_0]$ with $L_0>0$, $\mathcal U=[0,1/L_0]$, $g=\theta x-1$ a
 
 ---
 
-## 7. Stage 2: quantitative learnability (2026-11-22)
+## 7. Stage 2: quantitative learnability (2026-11-21)
 
 K1 gives a uniform horizon $T(\varepsilon)$, but no estimate of it. This section gives one, explains why it must involve a margin, and records how the deadlock boundary behaves under perturbation. Hypotheses and notation are those of §§1–2. Observations are scalar, $\mathcal Y(\theta,u)=[h(\theta,u)-\delta_u,h(\theta,u)+\delta_u]$, with $h(\cdot,u)$ uniformly $L_h$-Lipschitz, and $w_K(u)=\max_Kh(\cdot,u)-\min_Kh(\cdot,u)$.
 

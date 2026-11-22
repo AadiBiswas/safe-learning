@@ -150,7 +150,7 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 
 ---
 
-# Stage 2 additions (2026-11-22)
+# Stage 2 additions (2026-11-21)
 
 **Abbreviations.**
 - LI = `research/linear_identifiability.md`
@@ -216,7 +216,7 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 
 ---
 
-# Stage 3 additions (2026-11-23)
+# Stage 3 additions (2026-11-21)
 
 **Abbreviations.**
 - BF = `research/boolean_trap_formulation.md`
@@ -270,7 +270,7 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 
 ---
 
-# Stage 4 additions and consolidation (2026-11-24)
+# Stage 4 additions and consolidation (2026-11-21)
 
 **Abbreviations.**
 - AI = `research/aligned_identifiability.md`
