@@ -6,3 +6,6 @@ B. Theorem AL2: the aligned D2 family reduces to 2-SAT (compared with exhaustive
 
 C. Aligned functionals are still NP-hard in unbounded dimension (aligned sat_u2)
   [ok] every experiment aligned (a = c); |B| <= 2; SAT <=> trap: 47/47, 31 satisfiable
+
+D. W5': sigma on the moment curve in Q^4 equals minimum vertex cover
+  [ok] every edge is exactly a halfspace trace; sigma = minimum vertex cover: 200/200 graphs

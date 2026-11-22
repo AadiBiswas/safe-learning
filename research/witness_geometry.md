@@ -107,6 +107,15 @@
 - **Result.** $\sigma(\hat P)$ under these experiments is the DUDC optimum.
 - The lifted points lie on the paraboloid, hence are in convex position. ∎
 
+> **Proposition W5′ (Stage 4; self-contained).** For $d=4$, deciding $\sigma(K)\le k$ is NP-complete, even with $K$ in convex position.
+
+*Proof.*
+- Reduce from vertex cover. Place the vertices of $G$ at integers $t_i$ on the moment curve $(t,t^2,t^3,t^4)$.
+- For each edge $\{i,j\}$, take the experiment unsafe on $\{\theta : -(t-t_i)^2(t-t_j)^2>-\tfrac12\}$. The expression is linear in $\theta$ (R4(c)), so the experiment is a halfspace, and its trace is exactly $\{i,j\}$.
+- A witness set is then a vertex cover. Coefficients are integers of polynomial size. ∎
+
+This removes the dependence on the unread Johnson (1982) for dimension 4. Dimension 3 still rests on the citation.
+
 **Approximation.**
 - For halfspaces in $\mathbb R^2$ and $\mathbb R^3$, hitting sets admit $O(1)$-approximation via $\varepsilon$-nets of size $O(1/\varepsilon)$ (Matoušek–Seidel–Welzl 1990) and the Brönnimann–Goodrich reweighting method. Access level M: metadata only.
 - An LP relaxation gives a certified lower bound, the fractional hitting number, and a rounded solution gives an upper bound within a constant factor.

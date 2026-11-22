@@ -267,3 +267,59 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 | D-O2 | Planar instances whose observations are binary patterns with classes of size $\ge2$ (R7), with no lone pairs: P or coNP-complete? With only complete or empty conflict graphs the problem is trivial, since traps are then closed under supersets. |
 | W-O1 | FPT in $r$ for fixed $d$ (unchanged). |
 | Lit | Johnson 1982; the coreset size bound (unchanged). |
+
+---
+
+# Stage 4 additions and consolidation (2026-11-24)
+
+**Abbreviations.**
+- AI = `research/aligned_identifiability.md`
+- PA = `research/planar_hardness_audit.md`
+- CM = `research/complexity_map.md`
+- MA = `research/mathematical_audit.md`
+
+**Checks.**
+- E007 = `scripts/verify_d2.py`
+- E008 = `scripts/stage4_checks.py`
+
+## New results
+
+| ID | Statement | Status | Proof | Checks |
+|---|---|---|---|---|
+| AL0 | Aligned normal form ($\max q>\beta$ or range $\le t$). | P | AI §1 | — |
+| AL1 | An aligned global lone pair meets every nonempty unsafe set. | P | AI §2 | E008 §A: 19,049 cases |
+| AL2 | Aligned D2 family (global conflicts empty, complete or lone; $\lvert B\rvert\le2$ for complete) ⇒ 2-SAT, $O(n^2(n+m))$, any $d$, any $\varepsilon$. | P | AI §3 | E008 §B: 600/600 |
+| AL3 | Aligned $\mathrm{TRAP}_0$ is NP-complete with $d$ unbounded ($\lvert B\rvert\le2$, convex position, common $\delta$). | P | AI §4 | E008 §C: 47/47 |
+| AL4 | Planar convex position: aligned effective lone-pair implications are cyclically local. | P | AI §5 | — |
+| W5′ | Computing $\sigma$ is NP-complete in $\mathbb Q^4$, in convex position, by a self-contained proof. | P | WG §3 | E008 §D: 200/200 |
+| PA | D2 audit: both implications from the trap property alone; rational realization with an analytic distinctness proof; strict margins; $O(\log(n+m))$ bits per number; ETH in parameters, experiments and bit length; $\varepsilon<1$ via $\sqrt{306}/17$. | P (audit) | PA | E007: 48/48 formulas |
+
+## Corrections (see MA §0)
+
+- **C1.** D2's constant safety uses $b=1$, giving a strict margin.
+- **C2.** D2 has $\le5n+11m$ experiments.
+- **C3.** The B4 "lone pair" claim is reformulated as a property of all known constructions; D-O2 is open.
+- **C4.** W5′ added.
+- **C5, C6.** Recorded earlier (E005 generator; L7 wording).
+
+## Status of principal results
+
+| ID | Status | Depends on external citation? |
+|---|---|---|
+| T1 | P-std | no |
+| T5, G1′ | P | no |
+| H1 | P | no |
+| P3 | P | no |
+| D2, D3 | P (audited) | no |
+| D4 | P, conditional on ETH and the sparsification lemma | standard complexity assumptions only |
+| AL2, AL3 | P | no |
+| K1–K3 | P | no |
+| Q1′, Q2 | P | no |
+| A3–A4 | P | no |
+| W4(c) (planar $\sigma$ general) | cited (A) | yes; the convex case W4(b) is proved |
+| W5 ($\sigma$, $d=3$) | cited (M) | yes; W5′ ($d=4$) is self-contained |
+| A2 sharp exponent | cited (A) | yes; used only as a remark |
+
+## Open after Stage 4
+
+AL-O1 (aligned, fixed $d\ge2$), OR-O1 (orthogonal, plane), D-O1 (FPT in observation lines), D-O2 (no lone pairs), W-O1, Q-K1, Q-K4′, Q-K5.

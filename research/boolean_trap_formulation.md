@@ -9,7 +9,7 @@
 | B1 | Traps of size $\ge2$ are exactly the satisfying assignments, with at least two ones, of an explicit CNF: one clause per experiment and per minimal observation conflict. With interval (Helly-2) observations every conflict is a pair. | proved |
 | B2 | $\lvert B_u\rvert\le1$ ⇒ Horn. Stage 1's closure algorithm P3 is least-model propagation. | proved; standard |
 | B3 | The constraint language used by the hardness proofs: positive 2-clauses, Horn implications with two negative literals, and one mixed shape with two negative and two positive literals. It is non-Horn, non-dual-Horn, non-bijunctive and non-affine, which is Schaefer's NP-complete case. | proved; classification standard |
-| B4 | **Clause shape does not determine complexity; the conflict-graph family does.** Deterministic observations produce clauses of the same shapes but only complete-multipartite conflict graphs, and are polynomial (P2). Hardness needs **one-edge conflict graphs**, i.e. a single forbidden pair. | proved |
+| B4 | **Clause shape does not determine complexity; the conflict-graph family does.** Deterministic observations produce clauses of the same shapes but only complete-multipartite conflict graphs, and are polynomial (P2). Every known hardness reduction uses **lone forbidden pairs** (or stars) as its negation primitive. *(Stage 4 audit: "hardness needs a lone pair" is not a theorem about all observation models; see `complexity_map.md` §4 and D-O2.)* | proved (the deterministic part); observation (the reductions) |
 | B5 | Geometric meaning of a one-edge conflict: a strictly antipodal pair (R1). In $d=1$ there is exactly one such pair, which explains the $d=1$ tractability from the observation side. | proved |
 
 **Answer to the brief's question 1.**

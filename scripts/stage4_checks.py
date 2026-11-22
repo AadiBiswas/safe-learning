@@ -132,6 +132,28 @@ def main():
     check("every experiment aligned (a = c); |B| <= 2; SAT <=> trap", ag == len(cases),
           f"{ag}/{len(cases)}, {sat} satisfiable")
 
+    log("\nD. W5': sigma on the moment curve in Q^4 equals minimum vertex cover")
+    from itertools import combinations
+    from traps import safety_witness_number
+    ag = tot = 0
+    for _ in range(200):
+        nv = rng.randint(2, 8)
+        E = [e for e in combinations(range(nv), 2) if rng.random() < 0.4]
+        pts = [tuple(Fr(t) ** k for k in (1, 2, 3, 4)) for t in range(nv)]
+        exps = []
+        for i, j in E:
+            # -(t-i)^2 (t-j)^2 > -1/2 as a linear functional of (t, t^2, t^3, t^4) plus a constant
+            c0, c1, c2, c3 = i * i * j * j, -2 * i * j * (i + j), i * i + j * j + 4 * i * j, -2 * (i + j)
+            a = (Fr(-c1), Fr(-c2), Fr(-c3), Fr(-1))
+            exps.append((a, Fr(c0) - Fr(1, 2), a, Fr(10 ** 9)))
+        inst = to_instance(pts, exps)
+        ok = all(inst.actions[u][0] == (1 << i | 1 << j) for u, (i, j) in enumerate(E))
+        vc = min((k for k in range(nv + 1) for S in combinations(range(nv), k)
+                  if all(i in S or j in S for i, j in E)), default=0)
+        tot += 1
+        ag += ok and safety_witness_number(inst, inst.full) == vc
+    check("every edge is exactly a halfspace trace; sigma = minimum vertex cover", ag == tot, f"{ag}/{tot} graphs")
+
     text = "\n".join(lines) + "\n"
     OUT.write_text(text)
     log(f"\n{len(failures)} failures")

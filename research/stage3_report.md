@@ -13,7 +13,7 @@ The critical dimension is therefore exactly 2. This is a complete dimensional di
 1. **Does the Boolean formulation give new insight?** Yes, as a dictionary rather than new Boolean theory.
    - Trap existence is satisfiability of clauses $(\bigvee_{F}\neg x\vee\bigvee_{B_u}x)$, one per experiment and minimal conflict $F$, plus "at least two ones" (B1).
    - Unsafe sets of size $\le1$ give Horn clauses, hence P. Size 2 gives Schaefer-hard languages (B2, B3).
-   - Clause shapes do not determine complexity. Deterministic observations produce the same shapes but only complete-multipartite conflicts, and are polynomial. **Hardness needs a lone forbidden pair** (B4), and the realization theory identifies that geometrically as a strictly antipodal pair (R1).
+   - Clause shapes do not determine complexity. Deterministic observations produce the same shapes but only complete-multipartite conflicts, and are polynomial. **Every known hardness construction uses a lone forbidden pair** (B4), and the realization theory identifies that geometrically as a strictly antipodal pair (R1). *(Stage 4 audit: this is a property of the constructions, not a theorem that every hard observation family must contain lone pairs; D-O2 is open.)*
 2. **Is fixed-dimensional coNP-completeness provable?** Yes, in $\mathbb Q^2$ (D2), hence in every $\mathbb Q^d$ with $d\ge2$ (D1).
 3. **Smallest dimension with hardness:** 2. This is tight, because $d=1$ is polynomial (L5).
 4. **Is the planar model polynomial?** Not unless P $=$ NP, even in strict convex position, with laminar unsafe sets of size $\le2$ and a common noise radius. It is polynomial or XP under:

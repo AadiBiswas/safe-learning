@@ -412,3 +412,50 @@ Results:
 - Johnson 1982 (the column itself).
 - The Dudley / Bronshteyn–Ivanov / AHPV coreset size statements (§7.2).
 - Kushik et al. 2016 and El-Fakih et al. 2018 (complete observable machines; not on the critical path).
+
+---
+
+## 9. Stage 4: final theorem-level originality audit (2026-11-24)
+
+### 9.1 Primary-source status
+
+**Johnson 1982 ("The NP-completeness column: an ongoing guide", J. Algorithms 3(2):182–195).** **M**. Not obtained.
+- Citing papers state "discrete unit disk cover is NP-hard [Joh82]".
+- Fowler–Paterson–Tanimoto 1981 (IPL 12(3)) is the usual source for the continuous version. **M**.
+- **Resolution:** W5 ($\sigma$ NP-hard in $\mathbb Q^3$) remains citation-dependent. The new **W5′** ($\sigma$ NP-hard in $\mathbb Q^4$) is self-contained: vertex cover on moment-curve pairs. No principal theorem depends on Johnson 1982.
+
+**The sharp coreset exponent.** Secondary statements, **A**:
+- Mount et al. (SoCG 2012): any convex body $K$ is $\varepsilon$-approximable by a polytope with $O((\operatorname{diam}K/\varepsilon)^{(d-1)/2})$ facets (Dudley 1974), and the same number of vertices suffices (Bronshteyn–Ivanov 1975).
+- Arya–da Fonseca–Mount (SoCG 2016) and the survey arXiv:2512.02379 say the same.
+- The original papers were not obtained. Bronshtein's 2007 survey ("Approximation of convex sets by polytopes", J. Math. Sci. / Contemp. Math. Fundam. Directions 22) is the reliable alternative to consult.
+- **Resolution:** A2 proves the weaker $O((R/\gamma)^{d-1})$ upper bound and the matching-exponent lower bound $\Omega((R/\gamma)^{(d-1)/2})$ independently. The sharp upper exponent is used only as a cited remark. No principal theorem depends on it.
+
+### 9.2 Theorem-level assessment
+
+The underlying static model **is a specialization of observable partial nondeterministic FSMs** (Türker et al. 2023, §7.1). Nothing below claims otherwise. Categories:
+- **(K)** known;
+- **(S)** a new specialization of known theory;
+- **(D)** an independently derived consequence;
+- **(O)** potentially original, not found in the sources read. Not finding a theorem is not proof that it is new.
+
+| # | Result | Category | Precise basis |
+|---|---|---|---|
+| 1 | Deterministic vs. ambiguous safe identification: P2 versus H1 | P2 is **K** (Hierons–Türker 2014). H1, the coNP-completeness of the static nondeterministic case, is **O**. | Türker et al. 2023 and ACY 1995 give only upper bounds for the static case. Their hardness uses dynamics, or concerns forest size. |
+| 2 | Unsafe-set cardinality transition: P at size 1, NP-complete at size 2, even laminar | **O** (statement). The technique is standard (Horn-SAT; Schaefer). | — |
+| 3 | Planar and fixed-dimensional dichotomy D2/D3 | **O** | not implied by geometric hitting-set hardness, which concerns a different problem and is polynomial in the plane; no match in targeted searches (§8) |
+| 4 | Unit-circle rational realization of D2; lone pair ⇔ strict antipodality (R1) | R1 is **D** (elementary). The realization is **O** as part of D2. | strict antipodality counts are **K** (Nguyên–Soltan, as cited) |
+| 5 | Safety-witness number $\sigma$; $\sigma(K)=\lvert K\rvert$ for minimal traps | **O** as a formulation; elementary proof | computing $\sigma$ is hitting set (**K**) |
+| 6 | Local-to-global principle G1′ | **O** | — |
+| 7 | Compact-space characterization K1–K3 and counterexamples X1–X4 | **D/O**: the technique is viability-kernel style (**K** in spirit); the statement with condition (L) and the counterexamples were not found | Aubin's viability theory is the template (not checked against a specific theorem) |
+| 8 | Certified discretization A3–A4; packing horizon Q1′; necessity Q2 | **D/O**. The covering and coreset tools are **K**; the safe-learning consequences were not found. | — |
+| 9 | Aligned classification AL1–AL4 | AL1 is **D**; AL2 and AL3 are **O** | — |
+
+**Strongest defensible original contributions, in order:**
+1. **The complexity map of static safe identification.** It has three parts:
+   - the coNP-completeness of the ambiguous-observation static case, set against the known polynomial deterministic case;
+   - the size-1 / size-2 transition;
+   - the dimensional dichotomy (P at $d=1$, coNP-complete at every fixed $d\ge2$, already on the unit circle), with the alignment refinement.
+2. **The structural theory:** traps, $\sigma$, minimal-trap cardinality and local-to-global principles.
+3. **The compact-space theory with (L),** and its certified and quantitative versions.
+
+All three remain subject to a final pre-submission novelty search in the geometric-CSP and testing literatures, using the queries recorded in §§6.5, 7.2 and 8.1.
