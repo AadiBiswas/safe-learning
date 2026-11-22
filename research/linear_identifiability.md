@@ -15,7 +15,7 @@
 | L7 | Parameterized by the number $r$ of distinct safety rays: XP, $O(n^{r+2}m)$, and **W[1]-hard** ($d$ unbounded). So no $f(r)\,\mathrm{poly}$ algorithm unless FPT $=$ W[1]. | proved |
 | L8 | Safety normals on at most two opposite rays ($\pm a$): pairs suffice at $\varepsilon=0$, $O(n^2m)$. | proved |
 | L9 | Aligned observations ($c_u=a_u$) do not bound minimal traps: the aligned parabola has minimal traps of every size $n\ge4$ in the plane. | proved |
-| L10 | A negative ("not both") constraint from an always-safe experiment forces **opposite caps**. This is the exact geometric obstruction that defeats the natural planar reductions. | proved (lemma); fixed-$d$ complexity **open** |
+| L10 | A negative ("not both") constraint from an always-safe experiment forces **opposite caps**. This is the exact geometric obstruction that defeats the *direct* planar reductions. | proved (lemma). Fixed-$d$ complexity: **resolved in Stage 3**, coNP-complete for $d\ge2$ (D2–D3) |
 
 **Answers to the brief's questions 1 and 2.**
 - **Hardness survives linear geometry in unbounded dimension.** It survives even in its most restrictive form: convex position, common noise, laminar unsafe sets of size $\le2$ (L6). It also survives parameterization by the number of safety directions (L7).
@@ -26,7 +26,7 @@
   - unsafe traces of size $\le1$ (Stage 1, P3);
   - nested traces (P4).
 - **Not by:** convex position, aligned observations, common noise radius, or laminarity.
-- **Open:** fixed dimension $d\ge2$. I could neither prove hardness nor find an algorithm. §5 isolates exactly why the standard reductions fail, and what a fixed-dimension hardness proof would have to do.
+- **Open at Stage 2; resolved in Stage 3:** fixed dimension $d\ge2$. *Stage 3 (`research/fixed_dimension_complexity.md`, D2–D3) proves coNP-completeness already in $\mathbb Q^2$, with all parameters on the unit circle. So the critical dimension is 2.* The Stage 2 text below is kept as the record of why the *direct* reductions fail.
 
 ## 1. The model
 
@@ -209,7 +209,7 @@ In the plane, caps are halfplane traces.
   - *What works.* "Not both" constraints are then realizable as nearest/farthest clusters from a centre $q_0$.
   - *What breaks.* The farthest cluster must be a vertex of the planar hull. That forces each variable's negative-literal cluster onto the hull, and empty circles through hull clusters and interior clusters then contain other clusters. A Delaunay-structured (planar) 3-SAT variant in which every clause is an empty-circle triangle *and* negations sit on the hull would complete the reduction. I do not know whether such a variant is NP-complete.
 
-**Precise open problem.** Is $\mathrm{TRAP}_0$ for the linear model in $\mathbb Q^2$, or $\mathbb Q^3$, decidable in polynomial time? The question remains with the following known:
+**Precise open problem (Stage 2), now resolved.** Is $\mathrm{TRAP}_0$ for the linear model in $\mathbb Q^2$, or $\mathbb Q^3$, decidable in polynomial time? *Stage 3 answer: no, unless P $=$ NP.* D2 shows coNP-completeness in $\mathbb Q^2$, on the unit circle. The obstruction above (L10, and arcs in convex position) is real but rules out only reductions that put literal points directly into clause traces. Private copies and forced helpers avoid it.
 - minimal traps are unbounded in both: G3(c) and L9 give planar examples;
 - $\sigma$ is polynomial in $\mathbb Q^2$ and NP-hard in $\mathbb Q^3$;
 - by L10, every "not both" gadget is a pair of opposite caps.

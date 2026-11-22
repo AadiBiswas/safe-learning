@@ -132,5 +132,5 @@
 ## 5. Open questions
 
 - **W-O1.** Is TRAP FPT in $r$ for fixed $d$?
-- **W-O2.** Do points in planar convex position admit an algorithm polynomial in both $n$ and $r$ for TRAP?
+- **W-O2.** Do points in planar convex position admit an algorithm polynomial in both $n$ and $r$ for TRAP? *Answered in Stage 3: no, unless P $=$ NP (D2, unit circle).*
 - **W-O3.** A continuum $\sigma$: `research/approximate_witnesses.md` replaces it by the approximate witness number $\sigma_\gamma$, which is finite.
