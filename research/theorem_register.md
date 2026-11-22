@@ -208,8 +208,62 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 |---|---|
 | G-O1 | **Main open problem.** TRAP for the linear model in fixed $d=2$ or $d=3$: P or NP-hard? Partial results and the obstruction are in LI §§4–5. |
 | W-O1 | Is TRAP FPT in the number of safety rays $r$ for fixed $d$? |
-| W-O2 | Planar convex position: an algorithm polynomial in both $n$ and $r$? |
+| W-O2 | Planar convex position: an algorithm polynomial in both $n$ and $r$? **Resolved negatively in Stage 3 (D2).** |
 | Q-K4′ | Under density, is $D^\*(\gamma)\to D^\*(0)$ as the safety relaxation $\gamma\to0$? |
 | Q-K5 | Bound the margin $\mu(\varepsilon)$ from quantitative regularity of $g$, $h$ and $\mathcal S$. |
 | L-O1 | Orthogonal safety and observation directions: any structural effect? |
 | Lit | Confirm Johnson 1982 (DUDC) for rational discrete inputs; confirm the Dudley / AHPV coreset size bound from text. |
+
+---
+
+# Stage 3 additions (2026-11-23)
+
+**Abbreviations.**
+- BF = `research/boolean_trap_formulation.md`
+- FD = `research/fixed_dimension_complexity.md`
+- GR = `research/geometric_realizations.md`
+
+**Checks.** E006 = `scripts/stage3_checks.py`.
+
+## Status changes
+
+| ID | Change |
+|---|---|
+| G-O1 | **Resolved: coNP-complete for every fixed $d\ge2$** (D2, D3). The critical dimension is exactly 2. |
+| W-O2 | **Resolved negatively** (D2): no polynomial algorithm in planar convex position unless P $=$ NP. |
+| L10 | Retained and strengthened to an iff (R1). Its Stage 2 reading, "obstruction to fixed-$d$ hardness", is **corrected**: it obstructs only direct clause encodings. |
+| L7 (wording) | **Corrected.** W[1]-hardness excludes FPT. It does not establish optimality of the XP exponent. |
+| W5 | Still rests on a cited NP-hardness (Johnson 1982, unread). |
+
+## New results
+
+| ID | Statement | Status | Proof | Checks |
+|---|---|---|---|---|
+| B1 | Exact CNF form of trap existence, with minimal-conflict clauses (pairs under Helly 2). | P | BF §1 | E006 §A: 600/600 set-valued, 600/600 linear |
+| B2 | $\lvert B\rvert\le1$ ⇒ Horn ⇒ P3. | P (standard) | BF §2 | E006 §A |
+| B3 | The hardness language is Schaefer-hard; each clause type is needed. | P (classification standard) | BF §2 | — |
+| B4 | Deterministic observations give complete-multipartite conflicts with no lone pair; hardness needs lone forbidden pairs. | P | BF §3 | — |
+| D0 | NP / coNP membership in every dimension. | P | FD §1 | — |
+| D1 | Zero-padding preserves instances exactly (dimension monotonicity). | P | FD §1 | E006 §C |
+| **D2** | **$\mathrm{TRAP}_0$ is NP-complete in $\mathbb Q^2$** with: all parameters on the unit circle; laminar unsafe traces that are singletons or adjacent pairs; one-pair-or-all-pairs separation; common $\delta$; linear size. | **P** | FD §2 | E006 §B: 58/58 formulas, exact geometry, up to 138 parameters |
+| **D3** | **Critical dimension $=2$:** P for $d=1$, coNP-complete for every fixed $d\ge2$. This also holds for $\varepsilon$-identification with every $\varepsilon<1$. | **P** | FD §2 | — |
+| D4 | ETH ⇒ no $2^{o(n)}$ algorithm in the plane. | P (conditional on ETH) | FD §2 | — |
+| D5 | XP $O(n^{2k+1}m)$ in the number $k$ of observation lines, in every dimension and for every safety structure. | P | FD §3 | E006 §D |
+| R1 | A one-edge conflict graph is realizable iff the pair is strictly antipodal. | P | GR §1 | E006 §E |
+| R2 | $O(n^{2d})$ realizable conflict graphs per configuration in $\mathbb R^d$. | P | GR §1 | — |
+| R3 | Block sums preserve exact-identification instances; distances change. | P | GR §3 | E006 §C |
+| R4 | Safety realizations: singletons; adjacent pairs on circles; arbitrary pairs in $\mathbb Q^4$; $k$-sets in $\mathbb Q^{2k}$. | P | GR §2 | — |
+| R5 | One-edge gadgets: matchings in $\mathbb Q^2$, bipartite graphs in $\mathbb Q^3$; at most $n$ in the plane. | P / P / cited (A) | GR §1 | — |
+| R6 | A joint circle realization exists for matched-pair instances with placeable adjacent pairs. | P | GR §3 | (D2 instances) |
+| R7 | The binary-pattern interval encoding with $\delta=\tfrac12$. Linear realization of general binary patterns needs cap structure (remark). | P / remark | GR §4 | — |
+
+## Open after Stage 3
+
+| ID | Question |
+|---|---|
+| A-O1 | Aligned observations ($c_u\parallel a_u$) in the plane: P or coNP-complete? |
+| A-O2 | Orthogonal observations ($c_u\perp a_u$) in the plane. |
+| D-O1 | Is TRAP FPT, or W[1]-hard, in the number $k$ of observation lines? In $k+r$? |
+| D-O2 | Planar instances whose observations are binary patterns with classes of size $\ge2$ (R7), with no lone pairs: P or coNP-complete? With only complete or empty conflict graphs the problem is trivial, since traps are then closed under supersets. |
+| W-O1 | FPT in $r$ for fixed $d$ (unchanged). |
+| Lit | Johnson 1982; the coreset size bound (unchanged). |

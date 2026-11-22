@@ -379,3 +379,36 @@ The adaptive decision tree literature with noisy outcomes (arXiv:2312.15357) stu
 | L7 (W[1]-hard in the number of safety directions) | Not found. **Potentially original.** |
 | W4(b), W5 ($\sigma$ polynomial in the plane, NP-hard in space) | Direct consequences of known geometric hitting-set results. **Not a contribution.** The contribution is only the connection. |
 | A1–A4, Q1–Q2 (approximate witnesses, certificates, packing horizons) | The tools are classical: support-function sampling, covering numbers. The certificate soundness and completeness (A3–A4) and the packing horizon (Q1) for safe identification were not found. **Potentially original as formulations.** |
+
+---
+
+## 8. Stage 3 addendum (2026-11-23): novelty check for the fixed-dimension results
+
+### 8.1 Searches
+
+Queries run in Stage 3:
+- the Johnson 1982 NP-completeness column with unit disk cover;
+- strictly antipodal pairs of convex polygons;
+- satisfiability or hardness for points on a circle with halfplane ranges combined with identification or adaptive testing under safety constraints.
+
+Results:
+- **Johnson, "The NP-completeness column: an ongoing guide", J. Algorithms 3(2):182–195, 1982.** **M**. The citation was confirmed from the reference list of arXiv:1411.6810 and from Waterloo DUDC papers, which attribute DUDC NP-hardness to it. The column itself was not obtained.
+  - Fowler–Paterson–Tanimoto, "Optimal packing and covering in the plane are NP-complete", IPL 12(3), 1981, is the usual source for the continuous unit-disk cover. **M**.
+  - **W5's dependency is therefore on a citation chain, not on a read theorem.** The exact question: does the hardness hold for the discrete variant with rational inputs? The citing papers state it for discrete unit disk cover.
+- **Strictly antipodal pairs.** A convex $m$-gon has $m-k$ strictly antipodal vertex pairs, $k$ being the number of pairs of parallel sides. This is attributed to Nguyên–Soltan in an appendix of arXiv:1406.2052. **A**. Used only as an upper bound remark in R5(c).
+- **No source found** combining halfplane ranges on points in convex position with satisfiability-type hardness of *identification* or *adaptive testing* under safety constraints.
+  - The closest hits are geometric hitting-set and cover problems, e.g. arXiv:2506.16979, which reduces halfplane hitting set to circular arc covering.
+  - Densest-hemisphere NP-completeness holds when the dimension is not fixed (Johnson–Preparata 1978, as cited; **M**).
+
+### 8.2 Verdict on D2 (planar coNP-completeness)
+
+- **Not found in the sources read, nor in the targeted searches.**
+- It is **not implied** by the partial-FSM literature (§7.1), which gives only upper bounds for the static case.
+- It is **not implied** by geometric hitting-set hardness either, which concerns optimization of a hitting set. W4(c) shows that the planar hitting-set version, computing $\sigma$, is polynomial, while D2 shows that planar TRAP is coNP-complete. These are different problems with opposite complexity in the plane.
+- D2 is the strongest candidate for an original contribution so far. The precise novelty question for a future check is whether any "geometric CSP with halfplane scopes" or "geometric decision tree with forbidden tests" result already contains a planar NP-hardness of this form. I found none.
+
+### 8.3 Still unread
+
+- Johnson 1982 (the column itself).
+- The Dudley / Bronshteyn–Ivanov / AHPV coreset size statements (§7.2).
+- Kushik et al. 2016 and El-Fakih et al. 2018 (complete observable machines; not on the critical path).

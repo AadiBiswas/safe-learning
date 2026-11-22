@@ -12,7 +12,7 @@
 | D0 | Problems, encodings, and NP / coNP membership in every dimension. | proved |
 | D1 | **Dimension monotonicity.** Zero-padding $\mathbb Q^d\to\mathbb Q^D$ preserves the instance exactly. | proved |
 | D2 | **Planar hardness.** $\mathrm{TRAP}_0$ is NP-complete, and exact safe identifiability coNP-complete, in $\mathbb Q^2$, already when *all* of the following hold: (i) every parameter lies on the unit circle (strict convex position); (ii) every unsafe trace is a singleton or a cyclically adjacent pair, and the traces form a laminar family; (iii) every experiment's observation separates either all pairs or exactly one antipodal pair; (iv) one common noise radius; (v) the instance has $O(n+m)$ parameters and experiments. | **proved** |
-| D3 | **The critical dimension is 2.** Linear safe identifiability is polynomial in $d=1$ (L5), and coNP-complete in every fixed $d\ge2$ (D1 + D2). The same holds for $\varepsilon$-identifiability for every $\varepsilon$ below a constant fraction of the parameter diameter. | **proved** |
+| D3 | **The critical dimension is 2.** Linear safe identifiability is polynomial in $d=1$ (L5), and coNP-complete in every fixed $d\ge2$ (D1 + D2). The same holds for $\varepsilon$-identifiability for every $\varepsilon<1$, on the unit circle. | **proved** |
 | D4 | *ETH lower bound.* Under ETH, there is no $2^{o(n)}$-time algorithm in the plane, where $n$ is the number of parameters. | proved (conditional) |
 | D5 | **XP in the observation directions.** With $k$ distinct observation lines, $\mathrm{TRAP}_\varepsilon$ is decidable in $O(n^{2k+1}m)$, in every dimension and for every safety structure. One observation direction gives polynomial time. | proved |
 | D6 | The Stage 2 obstruction (opposite caps) is real, but it constrains only *direct* clause encodings. Forced helpers and private copies route around it. | explanation |
@@ -140,7 +140,7 @@ Finally $\lvert K\rvert\ge2$, since $n\ge1$ gives at least two helpers.
   - *Laminarity:* the pairs $\{s_j,s'_j\}$ and $\{\kappa_{j1},\kappa_{j2}\}$ are pairwise disjoint, and every singleton is either inside one of them or disjoint from all.
   - *Exact checks:* on 58 formulas, including the degenerate ones, every point lies on the unit circle, and every unsafe set and every separated-pair set is the intended one. Satisfiability agreed with Boolean trap existence in every case (E006 §B).
 - **D3.** Combine D2 with L5 ($d=1$ polynomial) and D1.
-- **D3 for $\varepsilon>0$.** Every trap of size $\ge2$ contains all helpers, which are spread over the lower half-circle. For any $\varepsilon$ smaller than the diameter of the helper set (which exceeds $\sqrt2$ once there are $\ge3$ helpers), trap existence is unchanged.
+- **D3 for $\varepsilon>0$.** Every trap of size $\ge2$ contains all helpers, which are spread over the lower half-circle. With $n\ge2$ (add an unused variable if necessary), the helpers of $T_1$ and $T_2$ sit at $-v(1)$ and $-v(4)$. Their distance is $\sqrt{306}/17>1$. So for every $\varepsilon<1$ every trap of size $\ge2$ is $\varepsilon$-far, and $\varepsilon$-trap existence equals trap existence.
 - **D4.** The reduction is linear in the size of the formula. The sparsification lemma gives 3-SAT instances with $m=O(n)$, so under ETH 3-SAT has no $2^{o(n)}$ algorithm. Hence $\mathrm{TRAP}^{(2)}_0$ has no $2^{o(N)}$ algorithm, for $N$ parameters.
 
 ### 2.3 Why the Stage 2 reductions failed, and why this one does not
