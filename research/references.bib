@@ -1,0 +1,501 @@
+% References for the manuscript. 2026-11-21.
+%
+% Every entry carries a `note` with its access level, as in research/literature_review.md:
+%   F = full text read, P = partial text, A = abstract or secondary report only, M = metadata only.
+% "Fields:" says where the bibliographic fields were checked. Fields I could not confirm are
+% omitted rather than filled in; where that leaves an entry thin, the note says so.
+% "Standard citation" means a classical reference whose fields are the ones used throughout the
+% literature; I did not re-check those against the publisher in this project.
+%
+% Grouped by role. Entries marked [principal] support a principal theorem or its
+% literature comparison; the others are related work.
+
+% ---------------------------------------------------------------------------
+% Partial / nondeterministic FSM testing (the static model is the self-loop case)
+% ---------------------------------------------------------------------------
+
+@inproceedings{HieronsTurker2014,
+  author    = {Hierons, Robert M. and T{\"u}rker, Uraz Cengiz},
+  title     = {Distinguishing Sequences for Partially Specified {FSMs}},
+  booktitle = {NASA Formal Methods (NFM 2014)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8430},
+  pages     = {62--76},
+  publisher = {Springer},
+  year      = {2014},
+  doi       = {10.1007/978-3-319-06200-6_5},
+  note      = {[principal] Access F. Deterministic static case polynomial: overlaps P2. Fields: literature review.}
+}
+
+@article{TurkerEtAl2023,
+  author  = {T{\"u}rker, Uraz Cengiz and Hierons, Robert M. and Barlas, G. and El-Fakih, Khaled},
+  title   = {Incomplete Adaptive Distinguishing Sequences for Non-Deterministic {FSMs}},
+  journal = {IEEE Transactions on Software Engineering},
+  volume  = {49},
+  number  = {9},
+  pages   = {4371--4389},
+  year    = {2023},
+  doi     = {10.1109/TSE.2023.3291137},
+  note    = {[principal] Access F. Contains the static model as the self-loop case; its PSPACE-hardness uses state dynamics. Fields: literature review.}
+}
+
+@inproceedings{AlurCourcoubetisYannakakis1995,
+  author    = {Alur, Rajeev and Courcoubetis, Costas and Yannakakis, Mihalis},
+  title     = {Distinguishing Tests for Nondeterministic and Probabilistic Machines},
+  booktitle = {Proceedings of the 27th Annual ACM Symposium on Theory of Computing (STOC)},
+  pages     = {363--372},
+  year      = {1995},
+  doi       = {10.1145/225058.225161},
+  note      = {[principal] Access A. Upper bounds only for the static case. Fields: literature review.}
+}
+
+@article{YenigunEtAl2018,
+  author  = {Yenig{\"u}n, H{\"u}sn{\"u} and Yevtushenko, Nina and Kushik, Natalia and L{\'o}pez, Jorge},
+  title   = {The effect of partiality and adaptivity on the complexity of {FSM} state identification problems},
+  journal = {Proceedings of the Institute for System Programming of the RAS (Proceedings of ISP RAS)},
+  volume  = {30},
+  number  = {1},
+  pages   = {7--24},
+  year    = {2018},
+  doi     = {10.15514/ISPRAS-2018-30(1)-1},
+  note    = {[principal] Access F (text extracted from the journal PDF). Survey of homing/synchronizing/distinguishing complexity for partial and nondeterministic FSMs; partial inputs must be defined at every current state, as in this project's safety rule. Its adaptive-distinguishing hardness argument uses state cycles; no static-case result. Fields: the journal's citation block. Given names are as commonly published; the citation block gives initials only.}
+}
+
+@article{KushikEtAl2016,
+  author  = {Kushik, Natalia and El-Fakih, Khaled and Yevtushenko, Nina and Cavalli, Ana R.},
+  title   = {On adaptive experiments for nondeterministic finite state machines},
+  journal = {International Journal on Software Tools for Technology Transfer},
+  volume  = {18},
+  number  = {3},
+  year    = {2016},
+  note    = {Access M. Complete observable machines. Fields: reference list of YenigunEtAl2018; pages not confirmed.}
+}
+
+@article{ElFakihYevtushenkoKushik2018,
+  author  = {El-Fakih, Khaled and Yevtushenko, Nina and Kushik, Natalia},
+  title   = {Adaptive distinguishing test cases of nondeterministic finite state machines: test case derivation and length estimation},
+  journal = {Formal Aspects of Computing},
+  volume  = {30},
+  number  = {2},
+  year    = {2018},
+  doi     = {10.1007/s00165-017-0450-2},
+  note    = {Access A. Exponential length bounds for complete observable machines. Fields: reference list of YenigunEtAl2018 and the publisher URL; pages not confirmed.}
+}
+
+% ---------------------------------------------------------------------------
+% Diagnosis, set-membership estimation, adaptive information
+% ---------------------------------------------------------------------------
+
+@inproceedings{HaarEtAl2013,
+  author    = {Haar, Stefan and Haddad, Serge and Melliti, Tarek and Schwoon, Stefan},
+  title     = {Optimal Constructions for Active Diagnosis},
+  booktitle = {33rd IARCS Annual Conference on Foundations of Software Technology and Theoretical Computer Science (FSTTCS 2013)},
+  series    = {LIPIcs},
+  volume    = {24},
+  pages     = {527--539},
+  year      = {2013},
+  doi       = {10.4230/LIPIcs.FSTTCS.2013.527},
+  note      = {Access P. Evolving faults; EXPTIME-complete; does not subsume the static model. Extended version: J. Comput. Syst. Sci., DOI 10.1016/j.jcss.2016.04.007. Fields: literature review.}
+}
+
+@article{PaoliLafortune2005,
+  author  = {Paoli, Andrea and Lafortune, St{\'e}phane},
+  title   = {Safe diagnosability for fault-tolerant supervision of discrete-event systems},
+  journal = {Automatica},
+  volume  = {41},
+  number  = {8},
+  pages   = {1335--1347},
+  year    = {2005},
+  doi     = {10.1016/j.automatica.2005.03.017},
+  note    = {Access A. Passive diagnosis with a deadline. Fields: literature review.}
+}
+
+@article{MilaneseVicino1991,
+  author  = {Milanese, Mario and Vicino, Antonio},
+  title   = {Optimal estimation theory for dynamic systems with set membership uncertainty: an overview},
+  journal = {Automatica},
+  volume  = {27},
+  number  = {6},
+  pages   = {997--1009},
+  year    = {1991},
+  doi     = {10.1016/0005-1098(91)90134-N},
+  note    = {Access A. Fields: literature review.}
+}
+
+@misc{ShakouriVanWaardeCamlibel2026,
+  author        = {Shakouri, A. and van Waarde, Henk J. and Camlibel, M. Kanat},
+  title         = {Experiment design for set-membership identification: from prior knowledge to universal inputs},
+  year          = {2026},
+  eprint        = {2607.00844},
+  archivePrefix = {arXiv},
+  note          = {Access P. Offline, unconstrained experiment design. Fields: literature review.}
+}
+
+@article{Novak1996,
+  author  = {Novak, Erich},
+  title   = {On the power of adaption},
+  journal = {Journal of Complexity},
+  volume  = {12},
+  pages   = {199--237},
+  year    = {1996},
+  doi     = {10.1006/jcom.1996.0015},
+  note    = {Access A. Fields: literature review.}
+}
+
+@article{Reif1984,
+  author  = {Reif, John H.},
+  title   = {The complexity of two-player games of incomplete information},
+  journal = {Journal of Computer and System Sciences},
+  volume  = {29},
+  number  = {2},
+  pages   = {274--301},
+  year    = {1984},
+  doi     = {10.1016/0022-0000(84)90034-5},
+  note    = {Access A. Fields: literature review.}
+}
+
+@article{Chernoff1959,
+  author  = {Chernoff, Herman},
+  title   = {Sequential design of experiments},
+  journal = {Annals of Mathematical Statistics},
+  volume  = {30},
+  number  = {3},
+  pages   = {755--770},
+  year    = {1959},
+  doi     = {10.1214/aoms/1177706205},
+  note    = {Access M. Fields: literature review.}
+}
+
+@article{NaghshvarJavidi2013,
+  author  = {Naghshvar, Mohammad and Javidi, Tara},
+  title   = {Active sequential hypothesis testing},
+  journal = {Annals of Statistics},
+  volume  = {41},
+  number  = {6},
+  pages   = {2703--2738},
+  year    = {2013},
+  doi     = {10.1214/13-AOS1144},
+  note    = {Access M. Fields: literature review.}
+}
+
+% ---------------------------------------------------------------------------
+% Safe learning and incomplete learning
+% ---------------------------------------------------------------------------
+
+@inproceedings{SuiEtAl2015,
+  author    = {Sui, Yanan and Gotovos, Alkis and Burdick, Joel W. and Krause, Andreas},
+  title     = {Safe Exploration for Optimization with {G}aussian Processes},
+  booktitle = {Proceedings of the 32nd International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {37},
+  year      = {2015},
+  note      = {Access P (local text extraction). Reachability closure of the safe set. Fields: literature review; pages not confirmed.}
+}
+
+@inproceedings{TurchettaBerkenkampKrause2016,
+  author    = {Turchetta, Matteo and Berkenkamp, Felix and Krause, Andreas},
+  title     = {Safe Exploration in Finite {M}arkov Decision Processes with {G}aussian Processes},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2016},
+  eprint    = {1606.04753},
+  archivePrefix = {arXiv},
+  note      = {Access A. Fields: literature review.}
+}
+
+@inproceedings{BerkenkampEtAl2017,
+  author    = {Berkenkamp, Felix and Turchetta, Matteo and Schoellig, Angela P. and Krause, Andreas},
+  title     = {Safe Model-based Reinforcement Learning with Stability Guarantees},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2017},
+  eprint    = {1705.08551},
+  archivePrefix = {arXiv},
+  note      = {Access A. Fields: literature review.}
+}
+
+@inproceedings{MoldovanAbbeel2012,
+  author    = {Moldovan, Teodor Mihai and Abbeel, Pieter},
+  title     = {Safe Exploration in {M}arkov Decision Processes},
+  booktitle = {Proceedings of the 29th International Conference on Machine Learning (ICML)},
+  year      = {2012},
+  eprint    = {1205.4810},
+  archivePrefix = {arXiv},
+  note      = {Access P. NP-hardness of deciding existence of delta-safe (ergodic) policies; a different safety notion. Fields: literature review.}
+}
+
+@inproceedings{AmaniAlizadehThrampoulidis2019,
+  author    = {Amani, Sanae and Alizadeh, Mahnoosh and Thrampoulidis, Christos},
+  title     = {Linear Stochastic Bandits Under Safety Constraints},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2019},
+  eprint    = {1908.05814},
+  archivePrefix = {arXiv},
+  note      = {Access P. Fields: literature review.}
+}
+
+@inproceedings{GangradeChenSaligrama2024,
+  author    = {Gangrade, Aditya and Chen, Tianrui and Saligrama, Venkatesh},
+  title     = {Safe Linear Bandits over Unknown Polytopes},
+  booktitle = {Conference on Learning Theory (COLT)},
+  year      = {2024},
+  eprint    = {2209.13694},
+  archivePrefix = {arXiv},
+  note      = {Access P. Fields: literature review.}
+}
+
+@misc{LuEtAl2017,
+  author        = {Lu, Tyler and Zinkevich, Martin and Boutilier, Craig and Roy, Binz and Schuurmans, Dale},
+  title         = {Safe Exploration for Identifying Linear Systems via Robust Optimization},
+  year          = {2017},
+  eprint        = {1711.11165},
+  archivePrefix = {arXiv},
+  note          = {Access A. Stochastic, PAC-style safe identification of linear systems; no complexity-class results. Fields: arXiv listing.}
+}
+
+@inproceedings{CamilleriEtAl2022,
+  author    = {Camilleri, Romain and others},
+  title     = {Active Learning with Safety Constraints},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2022},
+  eprint    = {2206.11183},
+  archivePrefix = {arXiv},
+  note      = {Access A. Stochastic, known safe set. Fields: literature review; full author list not recorded.}
+}
+
+@article{BrunkeEtAl2022,
+  author  = {Brunke, Lukas and Greeff, Melissa and Hall, Adam W. and Yuan, Zhaocong and Zhou, Siqi and Panerati, Jacopo and Schoellig, Angela P.},
+  title   = {Safe Learning in Robotics: From Learning-Based Control to Safe Reinforcement Learning},
+  journal = {Annual Review of Control, Robotics, and Autonomous Systems},
+  volume  = {5},
+  pages   = {411--444},
+  year    = {2022},
+  doi     = {10.1146/annurev-control-042920-020211},
+  note    = {Access M. Fields: literature review.}
+}
+
+@article{FudenbergLevine1993,
+  author  = {Fudenberg, Drew and Levine, David K.},
+  title   = {Self-Confirming Equilibrium},
+  journal = {Econometrica},
+  volume  = {61},
+  number  = {3},
+  pages   = {523--545},
+  year    = {1993},
+  doi     = {10.2307/2951716},
+  note    = {Access A. Fields: literature review.}
+}
+
+@article{EasleyKiefer1988,
+  author  = {Easley, David and Kiefer, Nicholas M.},
+  title   = {Controlling a Stochastic Process with Unknown Parameters},
+  journal = {Econometrica},
+  volume  = {56},
+  number  = {5},
+  pages   = {1045--1064},
+  year    = {1988},
+  note    = {Access A. JSTOR 1911358. Fields: literature review.}
+}
+
+@article{KieferNyarko1989,
+  author  = {Kiefer, Nicholas M. and Nyarko, Yaw},
+  title   = {Optimal Control of an Unknown Linear Process with Learning},
+  journal = {International Economic Review},
+  volume  = {30},
+  number  = {3},
+  year    = {1989},
+  doi     = {10.2307/2526776},
+  note    = {Access M. Fields: literature review; first page 571, last page not recorded.}
+}
+
+@article{Rothschild1974,
+  author  = {Rothschild, Michael},
+  title   = {A two-armed bandit theory of market pricing},
+  journal = {Journal of Economic Theory},
+  volume  = {9},
+  number  = {2},
+  pages   = {185--202},
+  year    = {1974},
+  doi     = {10.1016/0022-0531(74)90066-0},
+  note    = {Access M. Fields: literature review.}
+}
+
+% ---------------------------------------------------------------------------
+% Complexity
+% ---------------------------------------------------------------------------
+
+@incollection{Karp1972,
+  author    = {Karp, Richard M.},
+  title     = {Reducibility Among Combinatorial Problems},
+  booktitle = {Complexity of Computer Computations},
+  publisher = {Plenum Press},
+  pages     = {85--103},
+  year      = {1972},
+  note      = {[principal] Standard citation (3-SAT source problem for H1, D2, AL3).}
+}
+
+@inproceedings{Schaefer1978,
+  author    = {Schaefer, Thomas J.},
+  title     = {The Complexity of Satisfiability Problems},
+  booktitle = {Proceedings of the 10th Annual ACM Symposium on Theory of Computing (STOC)},
+  pages     = {216--226},
+  year      = {1978},
+  doi       = {10.1145/800133.804350},
+  note      = {Standard citation (B2, B3).}
+}
+
+@article{DowlingGallier1984,
+  author  = {Dowling, William F. and Gallier, Jean H.},
+  title   = {Linear-time algorithms for testing the satisfiability of propositional {H}orn formulae},
+  journal = {Journal of Logic Programming},
+  volume  = {1},
+  number  = {3},
+  pages   = {267--284},
+  year    = {1984},
+  note    = {[principal] Standard citation (P3).}
+}
+
+@article{EvenItaiShamir1976,
+  author  = {Even, Shimon and Itai, Alon and Shamir, Adi},
+  title   = {On the Complexity of Timetable and Multicommodity Flow Problems},
+  journal = {SIAM Journal on Computing},
+  volume  = {5},
+  number  = {4},
+  pages   = {691--703},
+  year    = {1976},
+  note    = {Standard citation (2-SAT in polynomial time; AL2).}
+}
+
+@article{ImpagliazzoPaturi2001,
+  author  = {Impagliazzo, Russell and Paturi, Ramamohan},
+  title   = {On the Complexity of k-{SAT}},
+  journal = {Journal of Computer and System Sciences},
+  volume  = {62},
+  number  = {2},
+  pages   = {367--375},
+  year    = {2001},
+  note    = {[principal] Standard citation (ETH; D4).}
+}
+
+@article{ImpagliazzoPaturiZane2001,
+  author  = {Impagliazzo, Russell and Paturi, Ramamohan and Zane, Francis},
+  title   = {Which Problems Have Strongly Exponential Complexity?},
+  journal = {Journal of Computer and System Sciences},
+  volume  = {63},
+  number  = {4},
+  pages   = {512--530},
+  year    = {2001},
+  note    = {[principal] Standard citation (sparsification lemma; D4).}
+}
+
+@book{CyganEtAl2015,
+  author    = {Cygan, Marek and Fomin, Fedor V. and Kowalik, {\L}ukasz and Lokshtanov, Daniel and Marx, D{\'a}niel and Pilipczuk, Marcin and Pilipczuk, Micha{\l} and Saurabh, Saket},
+  title     = {Parameterized Algorithms},
+  publisher = {Springer},
+  year      = {2015},
+  note      = {Standard citation (multicolored clique W[1]-hard; L7(b)).}
+}
+
+@article{HyafilRivest1976,
+  author  = {Hyafil, Laurent and Rivest, Ronald L.},
+  title   = {Constructing optimal binary decision trees is {NP}-complete},
+  journal = {Information Processing Letters},
+  volume  = {5},
+  number  = {1},
+  pages   = {15--17},
+  year    = {1976},
+  note    = {Access A. Standard citation (OPTCOUNT, cited only).}
+}
+
+@article{LaberNogueira2004,
+  author  = {Laber, Eduardo S. and Nogueira, Loana Tito},
+  title   = {On the hardness of the minimum height decision tree problem},
+  journal = {Discrete Applied Mathematics},
+  year    = {2004},
+  doi     = {10.1016/j.dam.2004.06.002},
+  note    = {Access A. OPTCOUNT, cited only. Fields: DOI from literature review; volume and pages not confirmed.}
+}
+
+% ---------------------------------------------------------------------------
+% Geometry: hitting sets, coresets, polytope approximation
+% ---------------------------------------------------------------------------
+
+@article{Johnson1982,
+  author  = {Johnson, David S.},
+  title   = {The {NP}-completeness column: an ongoing guide},
+  journal = {Journal of Algorithms},
+  volume  = {3},
+  number  = {2},
+  pages   = {182--195},
+  year    = {1982},
+  note    = {Access M. Cited for NP-hardness of discrete unit disk cover, used only by W5 (sigma NP-hard in Q^3). Not read. W5' (Q^4) is proved without it. Fields: reference lists of papers citing it.}
+}
+
+@article{HarPeledLee2012,
+  author  = {Har-Peled, Sariel and Lee, Mira},
+  title   = {Weighted geometric set cover problems revisited},
+  journal = {Journal of Computational Geometry},
+  volume  = {3},
+  number  = {1},
+  pages   = {65--85},
+  year    = {2012},
+  note    = {Access A. Halfplane cover / hitting set in polynomial time (W4(c), cited only). Standard citation.}
+}
+
+@misc{HalfplaneHittingSet2025,
+  title         = {Minimum-weight half-plane hitting set},
+  year          = {2025},
+  eprint        = {2506.16979},
+  archivePrefix = {arXiv},
+  note          = {Access A. O(n^{5/2} log^2 n) halfplane hitting set via circular-arc cover (W4(c), cited only). Authors not recorded; fill in from the arXiv listing before use.}
+}
+
+@article{AgarwalHarPeledVaradarajan2004,
+  author  = {Agarwal, Pankaj K. and Har-Peled, Sariel and Varadarajan, Kasturi R.},
+  title   = {Approximating extent measures of points},
+  journal = {Journal of the ACM},
+  volume  = {51},
+  number  = {4},
+  pages   = {606--635},
+  year    = {2004},
+  note    = {Access A. Definition of epsilon-kernels confirmed (A0). Standard citation.}
+}
+
+@article{Dudley1974,
+  author  = {Dudley, Richard M.},
+  title   = {Metric entropy of some classes of sets with differentiable boundaries},
+  journal = {Journal of Approximation Theory},
+  volume  = {10},
+  pages   = {227--236},
+  year    = {1974},
+  note    = {Access A (statement via BronshteinSurvey2007 Sect. 4.1 and Hoehner2025 Thm. 4.1). Fields: reference 103 of BronshteinSurvey2007. A 1979 corrigendum (J. Approx. Theory 26) is cited by Hoehner2025; not confirmed from text.}
+}
+
+@article{BronshteinIvanov1975,
+  author  = {Bronshte{\u\i}n, E. M. and Ivanov, L. D.},
+  title   = {The approximation of convex sets by polyhedra},
+  journal = {Sibirskii Matematicheskii Zhurnal},
+  volume  = {16},
+  pages   = {1110--1112},
+  year    = {1975},
+  note    = {Access A (statement via BronshteinSurvey2007 Sect. 4.1). Fields: reference 5 of BronshteinSurvey2007 (Russian original; Russian title "Priblizhenie vypuklykh mnozhestv mnogogrannikami"). The English translation, Siberian Math. J. 16(5):852--853, is cited by Hoehner2025; not confirmed.}
+}
+
+@article{BronshteinSurvey2007,
+  author  = {Bronshtein, E. M.},
+  title   = {Approximation of convex sets by polytopes},
+  journal = {Journal of Mathematical Sciences},
+  volume  = {153},
+  number  = {6},
+  pages   = {727--762},
+  year    = {2008},
+  doi     = {10.1007/s10958-008-9144-x},
+  note    = {Access F (Russian original read). Russian original: Sovremennaya Matematika. Fundamental'nye Napravleniya 22 (2007), 5--37. Sect. 4.1, ineq. (6): delta_H(U, polytopes with at most n vertices) <= c(U) n^{-2/(d-1)} for every convex body U, also for inscribed polytopes, proved independently by Bronshteyn--Ivanov and Dudley. Fields: Math-Net.Ru record (cmfd83) and the Russian title page; Springer record not read.}
+}
+
+@misc{Hoehner2025,
+  author        = {Hoehner, Steven},
+  title         = {From Circles to Convex Bodies: Approximating Curved Shapes by Polytopes},
+  year          = {2025},
+  eprint        = {2512.02379},
+  archivePrefix = {arXiv},
+  note          = {Access P (HTML v4, Sects. 1--4.1). Thm. 4.1 states the uniform (diam K / epsilon)^{(d-1)/2} vertex and facet bounds. Fields: arXiv listing.}
+}

@@ -459,3 +459,73 @@ The underlying static model **is a specialization of observable partial nondeter
 3. **The compact-space theory with (L),** and its certified and quantitative versions.
 
 All three remain subject to a final pre-submission novelty search in the geometric-CSP and testing literatures, using the queries recorded in §§6.5, 7.2 and 8.1.
+
+---
+
+## 10. Final pre-manuscript verification (2026-11-21)
+
+*A last primary-source-driven search, aimed at mathematical equivalence rather than terminology. Bibliographic data for everything the manuscript may cite is in `research/references.bib`, with access levels.*
+
+### 10.1 Searches
+
+Queries covered:
+- adaptive distinguishing for partial nondeterministic FSMs, the self-loop or static restriction, and forbidden or undefined inputs;
+- adaptive identification and diagnosis with forbidden, dangerous or uncertainty-dependent tests;
+- geometric identification with halfplane constraints, points on a circle and interval measurements;
+- deciding safe identifiability or safe exploration with NP- or coNP-hardness;
+- recent work by the partial-FSM authors (2024–2026).
+
+### 10.2 New items
+
+**H. Yenigün, N. Yevtushenko, N. Kushik, J. López. *The effect of partiality and adaptivity on the complexity of FSM state identification problems.* Proc. ISP RAS 30(1):7–24, 2018. DOI 10.15514/ISPRAS-2018-30(1)-1.** **F** (text extracted from the journal PDF).
+- *Model.* Partial observable nondeterministic FSMs. An input may be applied only if it is **defined at every current candidate state**. This is exactly the robust-safety rule here ($u\in\mathcal S(\Theta_t)$), so it is the nearest existing framework, together with Türker et al. 2023.
+- *Results for distinguishing experiments.*
+  - Preset distinguishing: PSPACE-complete for complete and partial observable nondeterministic machines.
+  - Adaptive distinguishing: P for complete and partial deterministic machines, the latter citing Hierons–Türker 2014.
+  - Adaptive distinguishing for nondeterministic machines: claimed PSPACE-hard and "out of P". The argument is a family of 2-input machines with prime-length cycles, in which every adaptive distinguishing test case has exponential height.
+- *Relation to this project.*
+  - The hardness argument lives entirely in the **state dynamics**. With self-loops only, every reachable candidate set is a subset of $\Theta_0$, and some distinguishing test case has height $\le\lvert\Theta_0\rvert-1$ (T1, T2). So the argument does not apply to the static model, which is in coNP (Proposition M).
+  - The paper says nothing about the static case, unsafe-set cardinality, or geometric realizations.
+  - **It does not establish or subsume H1, P3, D2 or D3.** It strengthens the framing that the static model is the self-loop case of a known family whose dynamic versions are PSPACE-hard.
+  - Separately, an exponential-height argument by itself shows a lower bound on test-case size, not hardness of the existence question. I do not rely on that claim.
+
+**T. Lu, M. Zinkevich, C. Boutilier, B. Roy, D. Schuurmans. *Safe exploration for identifying linear systems via robust optimization.* arXiv:1711.11165, 2017.** **A**. This is the entry listed without authors in §1.8b. It is stochastic, PAC-style, with a nominal safe action and no complexity-class result. It is not comparable.
+
+**"Identification of points using disks"** (Discrete Math. 2019; arXiv:1705.11116). **A**. Identifying codes: a *non-adaptive* minimum set of disks separating all points, NP-complete for fixed radius. There are no safety constraints and no adaptivity. Its closest analogue here is computing $\sigma$, not deciding TRAP. Not equivalent.
+
+**Moldovan–Abbeel 2012** (already §1.3) is the only safe-exploration paper with a hardness result. It concerns existence of ergodicity-safe policies in MDPs, not identification.
+
+### 10.3 Primary-source verification
+
+**Bronshtein's survey.** E. M. Bronshtein, *Approximation of convex sets by polytopes*, Sovremennaya Matematika. Fundamental'nye Napravleniya 22 (2007) 5–37; J. Math. Sci. 153(6):727–762, 2008, DOI 10.1007/s10958-008-9144-x. **F**, Russian original.
+- §4.1, inequality (6): for every convex body $U\subset\mathbb E^d$, $\delta_H(U,\mathfrak R^d_n)\le c(U)\,n^{-2/(d-1)}$, where $\mathfrak R^d_n$ are the polytopes with at most $n$ vertices. The same bound holds for the inscribed and circumscribed classes, with vertices and with facets.
+- It attributes the result to [5] Bronshteyn–Ivanov, Sib. Mat. Zh. 16 (1975) 1110–1112, and [103] Dudley, J. Approx. Theory 10 (1974) 227–236, independently.
+- *Metric:* Hausdorff. *Exponent:* $2/(d-1)$ in $n$, i.e. $n=O(\varepsilon^{-(d-1)/2})$ at accuracy $\varepsilon$.
+- *Constant:* $c(U)$, unspecified in that passage.
+
+**The uniform constant.**
+- Hoehner, arXiv:2512.02379 (**P**, Thm. 4.1) states it: at most $(\operatorname{diam}K/\varepsilon)^{(d-1)/2}$ vertices for an inscribed polytope, and the same number of facets for a circumscribed one, for every convex body and $\varepsilon\in(0,1]$.
+- The original papers remain unread, so the uniform form is **A**.
+
+**Consequence for the documents.**
+- `research/approximate_witnesses.md` now records what is primary, and closes two small gaps in applying the classical theorem to $\sigma_\gamma$:
+  - vertices lie in $\operatorname{conv}K$, fixed by Carathéodory at a factor $d+1$;
+  - empty interior, fixed by fattening and projection.
+- No theorem changes. A2's own bounds are proved there, and the sharp upper exponent is a remark.
+
+**Johnson 1982.** Unchanged: **M**, not obtained.
+- **W5** ($\sigma$ NP-hard in $\mathbb Q^3$) depends on it.
+- **W5′** ($\sigma$ NP-hard in $\mathbb Q^4$) does not: vertex cover on moment-curve pairs, proved in `research/witness_geometry.md`.
+- The manuscript should state W5′ as the theorem, and W5 as a remark citing Johnson.
+
+### 10.4 Conclusion
+
+**No prior result found establishes or subsumes D2, its unit-circle restriction, H1, the size-1/size-2 transition, $\sigma$ and G1′, or K1–K3.** The assessment in §9.2 stands unchanged. As before, an unsuccessful search is not proof of priority.
+
+**Remaining cited-only statements, none on a principal theorem's critical path:**
+- Johnson 1982 (W5);
+- the uniform Dudley / Bronshteyn–Ivanov constant (A2 remark);
+- Har-Peled–Lee 2012 and arXiv:2506.16979 (W4(c));
+- Hyafil–Rivest and Laber–Nogueira (OPTCOUNT);
+- Nguyên–Soltan (R5(c));
+- the ACY 1995 theorem statements.

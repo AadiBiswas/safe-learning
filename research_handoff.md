@@ -8,6 +8,14 @@
 - §§1–12 state the mathematics with complete hypotheses, and point to the authoritative proof location for each result.
 - §13 holds research-status notes: what is cited, what is open, what is weak. **Keep §13 out of manuscript prose.**
 - IDs are the repository's stable identifiers (`research/theorem_register.md`).
+- §15 lists the files to transfer with this handoff, and where each principal theorem is proved in full.
+- **Location abbreviations** (all in `research/`):
+  - FT = `finite_trap_theory.md`, GO = `geometric_obstructions.md`;
+  - CA = `complexity_analysis.md`, CO = `continuum_analysis.md`;
+  - LI = `linear_identifiability.md`, WG = `witness_geometry.md`, AW = `approximate_witnesses.md`;
+  - FD = `fixed_dimension_complexity.md`, GR = `geometric_realizations.md`;
+  - PA = `planar_hardness_audit.md`, AI = `aligned_identifiability.md`;
+  - SA = `scalar_analysis.md`.
 
 ---
 
@@ -25,6 +33,11 @@
   - Nature reports $y_t\in\mathcal Y(\theta^\*,u_t)$. **The report is adaptive:** it may depend on the history and on $u_t$.
   - The consistent set updates to $\Theta_{t+1}=\{\theta\in\Theta_t : y_t\in\mathcal Y(\theta,u_t)\}$.
 - **Goal.** Uniform identification to tolerance $\varepsilon\ge0$: a policy such that for all $\theta^\*$ and all admissible reports, $\operatorname{diam}\Theta_t\le\varepsilon$ eventually. Exact identification is $\varepsilon=0$, i.e. $\Theta_t=\{\theta^\*\}$.
+- **Tolerance conventions. Keep them distinct in the manuscript.**
+  - *Finite model:* success is $\operatorname{diam}\Theta_t\le\varepsilon$, and the obstruction is a trap with $\operatorname{diam}>\varepsilon$.
+  - *Compact model:* $\varepsilon>0$; success is $\operatorname{diam}\Theta_t<\varepsilon$, and the obstruction is a closed trap with $\operatorname{diam}\ge\varepsilon$.
+  - *D2/D3:* both conventions give the same hardness, for $0\le\varepsilon<1$ and $\varepsilon\le1$ respectively.
+- **Quantifier order** for uniform identification: $\exists$ policy $\exists T\ \forall\theta^\*\ \forall$ adaptive reports. Eventual identification swaps $\exists T$ inside. T1 and K3 show the two coincide, finitely and under (L) respectively.
 
 **Linear model.**
 - $\Theta_0\subset\mathbb Q^d$, and experiments $(a_u,b_u,c_u,\delta_u)$.
@@ -67,13 +80,27 @@
 >
 > This is a theorem about adaptive noise. Under oblivious noise, a randomizing agent can escape a trap (example Ob).
 >
-> *Proof.* `research/finite_trap_theory.md` §§2–3: a held trap blocks every policy; a strictly shrinking safe informative experiment always exists when no trap is present.
+> *Proof (complete).*
+> - **(i)⇒(ii).** Play any safe experiment informative on the current set while it is far. One exists, because a far reachable set is not a trap. Every response is then a proper subset, so the set shrinks strictly at each step, and at most $\lvert\Theta_0\rvert-1$ steps occur before it is no longer far.
+> - **(ii)⇒(iii)** is immediate.
+> - **(iii)⇒(i).** Let $K$ be a far trap, and fix $\theta^\*\in K$. While $\Theta_t\supseteq K$, we have $\mathcal S(\Theta_t)\subseteq\mathcal S(K)$, so whatever $u_t$ the policy draws is uninformative on $K$. The adversary reports some $y\in\bigcap_K\mathcal Y(\cdot,u_t)$, which is admissible since $\theta^\*\in K$, so $\Theta_{t+1}\supseteq K$. By induction, $\Theta_t$ stays far on every sample path. ∎
+>
+> Sharpness of $n-1$, T2 and T3: `research/finite_trap_theory.md` §3.
 
 > **T5 / G1′ (minimal traps; local to global; $\varepsilon=0$).**
 > - A minimal trap $K$ with $\lvert K\rvert\ge3$ has $\sigma(K)=\lvert K\rvert$. Hence at least $\lvert K\rvert$ experiments are unsafe on it, each isolating a different member. This is tight: the cycle trap has $n$ experiments and binary deterministic observations.
 > - For $k\ge2$: "every $\Theta'\subseteq\Theta_0$ is identifiable whenever all its $k$-subsets are" ⇔ every minimal trap has size $\le k$ ⇔ $\sigma\le k$ on minimal traps of size $\ge3$.
 >
-> *Proof.* `research/finite_trap_theory.md` §5 (Lemma W) and `research/geometric_obstructions.md` §1.
+> *Proof (complete).*
+> - **Lemma W.** Let $K$ be a far trap, $W\subseteq K$ a minimum witness ($\mathcal S(W)=\mathcal S(K)$), and $\{a,b\}\subseteq K$ a far pair. Then $K_0=W\cup\{a,b\}$ satisfies $\mathcal S(K)\subseteq\mathcal S(K_0)\subseteq\mathcal S(W)=\mathcal S(K)$. On each such $u$, $\bigcap_{K_0}\mathcal Y\supseteq\bigcap_K\mathcal Y\ne\varnothing$. So $K_0$ is a far trap with $\le\sigma(K)+2$ points. At $\varepsilon=0$, take $K_0=W$ if $\lvert W\rvert\ge2$, giving $\le\max(2,\sigma(K))$.
+> - **T5.** For a minimal trap with $\lvert K\rvert\ge3$, Lemma W and minimality force $\sigma(K)=\lvert K\rvert$. So no member can be dropped from the hitting set, i.e. each $\theta\in K$ is the only member of $K$ in some unsafe set. Those experiments are distinct.
+> - **Tightness** is the cycle trap: experiment $a_j$ is unsafe only at $j$ and reports whether $\theta=j+1$.
+> - **G1′.**
+>   - (i)⇒(ii): a minimal trap $K$ with $\lvert K\rvert>k$ has identifiable $k$-subsets, since it has no proper subtrap of size $\ge2$. Yet $K$ itself is not identifiable.
+>   - (ii)⇒(i): a non-identifiable $\Theta'$ contains a minimal trap, of size $\le k$, which lies inside some $k$-subset. This uses that the traps of a restriction are the traps contained in it (T4(1)).
+>   - (ii)⇔(iii) is T5. ∎
+>
+> Full text: `research/finite_trap_theory.md` §5 and `research/geometric_obstructions.md` §1.
 
 > **Finite complexity map** (explicit encodings; TRAP = "does a far trap exist", SAFEID its complement).
 > - **B1:** no safety ⇒ P, by pair tests, for every observation model.
@@ -91,16 +118,23 @@
 >   - there is a common noise radius;
 >   - the size is $O(n+m)$ with $O(\log(n+m))$ bits per number.
 > - **D3:** linear SAFEID is in P for $d=1$, and coNP-complete for every fixed $d\ge2$ and every tolerance $0\le\varepsilon<1$.
-> - **D4:** under ETH, there is no $2^{o(N)}$ algorithm in the plane, for $N$ parameters, and no $2^{o(L/\log L)}$ algorithm for bit length $L$.
+> - **D4:** under ETH, the planar problem has no $2^{o(N)}$ algorithm in the number $N$ of parameters, no $2^{o(\lvert\mathcal U\rvert)}$ algorithm in the number of experiments, and no $2^{o(L/\log L)}$ algorithm in the bit length $L$. The argument is the sparsification lemma followed by D2's linear-size reduction. No bound on the XP exponents of L7 or D5 follows.
 >
-> *Proofs.* `research/fixed_dimension_complexity.md` §2, with the independent audit in `research/planar_hardness_audit.md`.
+> **Sizes:** $N=6n+10m'$ parameters, $5n+11m'+(m-m')\le5n+11m$ experiments, and every number has $O(\log(n+m))$ bits.
+>
+> *Proofs.*
+> - **D2** (reduction, both directions, rational realization, margins, encoding length, ETH, $\varepsilon<1$): §5 below, written out in full in `research/planar_hardness_audit.md` §§2–7. **That document is the authoritative proof;** `research/fixed_dimension_complexity.md` §2 is the original Stage 3 derivation.
+> - **D3:** the $d=1$ half is L5. In one dimension a trap's hull is $[\min K,\max K]$, so $\{\min K,\max K\}$ is a trap of the same diameter (by L2), and pair tests decide. The $d\ge2$ half is D2 plus zero-padding (D1).
 
 > **K1–K3 (compact spaces).** Assume compactness, continuous $g$, a closed observation graph and (L), and let $\varepsilon>0$.
 > - **K1:** if no closed trap has diameter $\ge\varepsilon$, a uniform horizon $T$ exists with $\operatorname{diam}\Theta_T<\varepsilon$.
 > - **K2:** the closed traps form a closed family. The minimax limiting diameter is $D^\*=\max$ closed-trap diameter.
 > - **K3:** eventual identification implies uniform identification.
 >
-> *Proofs.* `research/continuum_analysis.md` §2.
+> *Proofs.* `research/continuum_analysis.md` §§1–2 (setting, Lemma 0, Lemmas 1–3, K1–K3; about two pages, self-contained).
+> - The argument: the adversary-winning families $W_t$ are up-closed and decreasing (Lemma 1), and closed under (L) (Lemma 2).
+> - Their intersection $L$, if nonempty, has an inclusion-minimal element, by Zorn: chains of compact sets have their intersection as Hausdorff limit.
+> - By Lemma 3 that element is a closed trap of diameter $\ge\varepsilon$.
 
 ## 4. Supporting results
 
@@ -116,7 +150,9 @@
 | D5 | XP $O(n^{2k+1}m)$ in observation lines, in any $d$. | FD §3 |
 | R1 | A one-edge conflict graph is realizable iff the pair is strictly antipodal. | GR §1 |
 | AL1–AL3 | An aligned global lone pair meets every nonempty unsafe set. The aligned D2 family reduces to 2-SAT (P). Aligned TRAP is NP-complete in unbounded $d$. | `aligned_identifiability.md` |
-| W1, W4, W5′ | σ ≤ number of blocked rays; planar σ polynomial (convex case proved); σ NP-hard in $\mathbb Q^4$ (self-contained). | `witness_geometry.md` |
+| W1, W4 | σ ≤ number of blocked rays; planar σ polynomial (convex position proved here; general position cited). | `witness_geometry.md` |
+| **W5′** (proved) | σ is NP-hard in $\mathbb Q^4$, with polynomial bits and convex position. Put graph vertices on the moment curve at integers $t_i$; edge $\{i,j\}$ is the trace of $-(t-t_i)^2(t-t_j)^2>-\tfrac12$, linear in the moment coordinates. σ then equals the minimum vertex cover. **Self-contained.** | `witness_geometry.md` (W5′), R4(c) in `geometric_realizations.md` |
+| W5 (cited) | σ is NP-hard in $\mathbb Q^3$, via paraboloid lifting of discrete unit disk cover. **Depends on Johnson 1982, unread.** State as a remark only. | `witness_geometry.md` §3 |
 | Q1′, Q2 | $T(\varepsilon)\le\operatorname{Pack}(\Theta_0,\mu(\varepsilon)/4L_h)$. Exponent $d$ and margin dependence are necessary; no margin-free bound exists. | CO §7 |
 | A2′–A4 | Robust Lemma W. Two-sided net certificates, sound always and complete away from tangential safety and zero-margin traps. | `approximate_witnesses.md` |
 
@@ -242,15 +278,20 @@ Access levels: **F** full text, **P** partial, **A** abstract or secondary, **M*
 - **S. Amani et al.** NeurIPS 2019; **A. Gangrade et al.** COLT 2024; **T. M. Moldovan, P. Abbeel.** ICML 2012. **P.**
 - **J. H. Reif.** JCSS 29(2), 1984. **A.**
 - **S. Har-Peled, M. Lee.** JoCG 3(1), 2012; arXiv:2506.16979. **A.** Halfplane cover / hitting set.
-- **D. S. Johnson.** J. Algorithms 3(2):182–195, 1982 (DUDC NP-hard, as cited). **M.**
+- **D. S. Johnson.** J. Algorithms 3(2):182–195, 1982 (DUDC NP-hard, as cited). **M.** Used only by W5; W5′ replaces it.
 - **P. K. Agarwal, S. Har-Peled, K. Varadarajan.** JACM 51(4), 2004 ($\varepsilon$-kernels). **A.**
-- **Dudley 1974; Bronshteyn–Ivanov 1975.** **A**, via Mount et al. SoCG 2012 / 2016 and arXiv:2512.02379.
+- **E. M. Bronshtein.** *Approximation of convex sets by polytopes.* Sovrem. Mat. Fundam. Napravl. 22 (2007) 5–37; J. Math. Sci. 153(6):727–762, 2008, DOI 10.1007/s10958-008-9144-x. **F.** §4.1(6): $\delta_H\le c(U)\,n^{-2/(d-1)}$ with $n$ vertices, also inscribed; attributed to Bronshteyn–Ivanov and Dudley.
+- **Dudley**, J. Approx. Theory 10:227–236, 1974; **Bronshteyn–Ivanov**, Sib. Mat. Zh. 16:1110–1112, 1975. **A** (statements via Bronshtein's survey and arXiv:2512.02379, Thm. 4.1). The uniform constant $C_d\operatorname{diam}$ is secondary. The gaps in applying it to $\sigma_\gamma$ (vertices in the hull; empty interior) are closed in `approximate_witnesses.md`.
+- **H. Yenigün, N. Yevtushenko, N. Kushik, J. López.** *The effect of partiality and adaptivity on the complexity of FSM state identification problems.* Proc. ISP RAS 30(1):7–24, 2018, DOI 10.15514/ISPRAS-2018-30(1)-1. **F.** Partial inputs must be defined at all candidate states, which is the safety rule here. Its adaptive-distinguishing hardness uses state cycles, and it has no static-case result.
+- **T. Lu, M. Zinkevich, C. Boutilier, B. Roy, D. Schuurmans.** arXiv:1711.11165, 2017. **A.** Stochastic safe identification of linear systems; not comparable.
 - **Matoušek–Seidel–Welzl 1990; Brönnimann–Goodrich 1995.** **M.**
 - **Hyafil–Rivest 1976; Laber–Nogueira 2004**, DOI 10.1016/j.dam.2004.06.002. **A.**
 - **Nguyên–Soltan**, via arXiv:1406.2052. **A.**
 - **Schaefer 1978; Dowling–Gallier 1984; Even–Itai–Shamir 1976; sparsification lemma (Impagliazzo–Paturi–Zane 2001).** Standard.
 
-Full review: `research/literature_review.md`. The originality audit is §9 there.
+- **BibTeX:** `research/references.bib`, 44 entries, each with its access level and the source of its fields. Missing fields are omitted, not guessed.
+
+Full review: `research/literature_review.md`. The originality audit is §9 there, and the final pre-manuscript search is §10. **No prior result found establishes or subsumes D2, H1, the size-1/size-2 transition, σ and G1′, or K1–K3.**
 
 ## 11. Computational methodology
 
@@ -305,6 +346,10 @@ python3.12 -m venv .venv && .venv/bin/pip install numpy pytest
 .venv/bin/python scripts/stage4_checks.py
 ```
 
+- **Checking reproduction.**
+  - Each driver rewrites its own `results/*.txt`; `stage3_checks` and `stage4_checks` also print a failure count to stdout that is not in the file.
+  - The test is therefore that `git diff --exit-code results/` reports no change after a run. It held for `verify_d2`, `stage3_checks` and `stage4_checks` in the pre-manuscript verification, and for the Stage 0–3 drivers in Stage 4.
+  - `finite_game.py` is slow and was last run in Stage 0.
 - **Figures.** `research/manuscript_plan.md` §4 lists the candidate figures F1–F8, with their data sources.
 - **Dependencies.** `research/manuscript_plan.md` §2. No principal theorem depends on an unverified citation.
 
@@ -313,7 +358,7 @@ python3.12 -m venv .venv && .venv/bin/pip install numpy pytest
 - **Cited, not read:**
   - W4(c), general planar σ (Har-Peled–Lee / arXiv:2506.16979);
   - W5, σ NP-hard in $\mathbb Q^3$ (Johnson 1982);
-  - the sharp $(d-1)/2$ coreset exponent;
+  - the *uniform* constant in the sharp $(d-1)/2$ coreset exponent; the per-body form is confirmed from Bronshtein's survey;
   - OPTCOUNT NP-hardness;
   - R5(c), the antipodal-pair count;
   - ACY 1995 theorem statements.
@@ -330,10 +375,44 @@ python3.12 -m venv .venv && .venv/bin/pip install numpy pytest
   - L3 (only 2 minimal traps of size $\ge3$ in E005 §B);
   - A1 (floats).
 - **Corrections made over Stages 1–4:** `research/mathematical_audit.md` §0, and the register's "Refuted or corrected" and status-change tables.
-- **Novelty.** "Not found" is not priority. Run a final search in the geometric-CSP and adaptive-testing literatures before submission.
+- **Novelty.** "Not found" is not priority. The final pre-manuscript search (literature review §10) found no subsuming result. Its nearest new item is Yenigün et al. 2018, whose hardness needs dynamics.
 
 ## 14. Repository status
 
 - Branch `main`, pushed to the private remote.
-- Test suite: 51 tests, all passing at the Stage 4 commit.
-- Stage commits: Stage 0 `5e9a078`/`04a5193`; Stage 1 to `7944cc7`; Stage 2 to `4e4b5b5`; Stage 3 to `1cf7d6e`; Stage 4 `6469030` to `48190ba`, followed by a date and hash correction.
+- Test suite: 51 tests, all passing at the Stage 4 commit and after the pre-manuscript verification.
+- Stage commits: Stage 0 `5e9a078`/`04a5193`; Stage 1 to `7944cc7`; Stage 2 to `4e4b5b5`; Stage 3 to `1cf7d6e`; Stage 4 `6469030` to `48190ba`, followed by a date and hash correction (`f6442c5`) and the pre-manuscript verification commit.
+
+## 15. Manuscript source package
+
+Transfer these files together with this handoff. Nothing outside them is needed to reconstruct a principal theorem.
+
+**Where each principal theorem is proved in full:**
+
+| Theorem | Complete proof | Inline here |
+|---|---|---|
+| T1 (with T2, T3) | `research/finite_trap_theory.md` §§1–3 | yes (§3) |
+| T5, Lemma W, G1′ | `research/finite_trap_theory.md` §5; `research/geometric_obstructions.md` §1 | yes (§3) |
+| H1, M, P2, P3, B1–B4 | `research/complexity_analysis.md` §§1–4; `research/boolean_trap_formulation.md` | statements only |
+| L1–L5, L6, L7 | `research/linear_identifiability.md` §§2–3 | L5 sketch (§3) |
+| **D2, D3, D4** | **`research/planar_hardness_audit.md`** (authoritative); `research/fixed_dimension_complexity.md` §§2–3 (original, plus D1 and D5) | construction and proof outline (§5) |
+| R1, R4 | `research/geometric_realizations.md` | statement |
+| AL1–AL4 | `research/aligned_identifiability.md` | statements |
+| W1–W5′ | `research/witness_geometry.md` | W5′ construction (§4) |
+| K1–K3, X1–X4, Q1′, Q2 | `research/continuum_analysis.md` §§1–3, 7 | outline (§3) |
+| A1–A4, X5 | `research/approximate_witnesses.md` | statements |
+| S1–S6, S4a′ | `research/scalar_analysis.md` | statements (§7) |
+
+**File inventory.**
+
+| Role | Files |
+|---|---|
+| Sourcebook | `research_handoff.md` (this file) |
+| Authoritative indices | `research/theorem_register.md` (every ID, status, location); `research/complexity_map.md` (all complexity statements); `research/mathematical_audit.md` (corrections C1–C6 and the audit of every area) |
+| Proof documents | the thirteen files in the table above |
+| Literature | `research/literature_review.md` (§§9–10 are the final originality and source audits); `research/references.bib` |
+| Plan | `research/manuscript_plan.md` (hierarchy, dependency map, outline, figures F1–F8) |
+| Computational record | `results/ledger.md` (E001–E008 and the inventory); `results/*.txt` (the committed outputs) |
+| Verification and figure code | `scripts/traps.py`, `scripts/linear.py`, `scripts/boolean.py`, `scripts/planar_hardness.py` (F4), `scripts/verify_d2.py`, `scripts/scalar.py` and `scripts/scalar_check.py` (F2), the `stage*_checks.py`, `stage1_finite.py`, `critical_scaling.py` and `finite_game.py` drivers, and `tests/`. Reproduction commands are in §12. |
+
+**Not needed for the manuscript:** the stage reports (`research/stage*_report.md`) and the Stage 0 specification files. They are historical records, superseded by the register, the map and this handoff. Include them only if an editor wants the history.

@@ -5,7 +5,7 @@
 - *Verifier:* `scripts/verify_d2.py`, output `results/verify_d2.txt` (ledger E007). It re-derives every intended experiment from the formula and recomputes every geometric quantity with its own exact arithmetic.
 
 **Verdict.** D2 survives the audit. One defect was found and corrected: the "always safe" experiments had no strict safety margin. Their constant safety $0\le0$ was tight at every parameter. They now use $0\le1$; no unsafe set changes. Two statements are sharpened:
-- the experiment count is $\le5n+12m$, not $\le7n+13m$;
+- the experiment count is $\le5n+11m$, not $\le7n+13m$ (§2.2; this line said $12m$ until the 2026-11-21 pre-manuscript check);
 - the ETH statement is now precise in terms of parameters, experiments and bit length.
 
 ## 1. Definitions used

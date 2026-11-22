@@ -190,7 +190,7 @@ See LR §2. Nothing here is labelled novel. F1 is standard in technique. F4 and 
 | W4 | $\sigma$: $d=1$ trivial; planar convex position exact via circular arcs, $O(km\log m)$; planar general polynomial. | P / P / cited (A) | WG §3 | E005 §F: 12,647/12,647 |
 | W5 | $\sigma$ NP-hard in $d=3$, even in convex position (paraboloid lifting of DUDC). | P from cited NP-hardness (A) | WG §3 | — |
 | A1 | Support-function sampling: error $\le2R\rho$. | P (classical) | AW §1 | E005 §J |
-| A2 | $\sigma_\gamma\le N(S^{d-1},\gamma/2R)$, with intrinsic dimension replacing $d$. Lower bound $\Omega((R/\gamma)^{(d-1)/2})$ for the sphere, exactly $\lceil\pi/\arccos(1-\gamma/R)\rceil$ in $d=2$. | P (sharp upper exponent cited) | AW §1 | E005 §J: $\sqrt\gamma\,\sigma_\gamma\to2.227$ (prediction 2.221) |
+| A2 | $\sigma_\gamma\le N(S^{d-1},\gamma/2R)$, with intrinsic dimension replacing $d$. Lower bound $\Omega((R/\gamma)^{(d-1)/2})$ for the sphere, exactly $\lceil\pi/\arccos(1-\gamma/R)\rceil$ in $d=2$. | P (sharp upper exponent: per-body form from the Bronshtein survey, uniform constant cited; AW §1 source check) | AW §1 | E005 §J: $\sqrt\gamma\,\sigma_\gamma\to2.227$ (prediction 2.221) |
 | A2′ | Robust Lemma W: a far trap of the $\gamma$-tightened model with $\le\sigma_\gamma+2$ points. | P | AW §1 | — |
 | CandA, CandB | Net perturbations, for nets inside the set: safety tightened by $L_gh$ (A); noise enlarged by $L_hh$ (B). | P | AW §2 | E005 §K: 33,056 pairs |
 | A3 | Two-sided net certificates are sound. | P | AW §3 | — |
