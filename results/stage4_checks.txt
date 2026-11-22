@@ -1,0 +1,8 @@
+A. Lemma AL1: an aligned lone pair is never disjoint from a nonempty unsafe set
+  [ok] lone pair meets every nonempty aligned unsafe set: 19049 (experiment, threshold) cases
+
+B. Theorem AL2: the aligned D2 family reduces to 2-SAT (compared with exhaustive search)
+  [ok] 2-SAT decision = exhaustive (exact identification): 600/600, 389 with a trap
+
+C. Aligned functionals are still NP-hard in unbounded dimension (aligned sat_u2)
+  [ok] every experiment aligned (a = c); |B| <= 2; SAT <=> trap: 47/47, 31 satisfiable

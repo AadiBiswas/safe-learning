@@ -257,3 +257,150 @@ def find_trap_obsdirs(points, exps, eps=0):
     if not C:                                   # no informative observation at all
         return inst.full if inst.far(inst.full) else None
     return None
+
+
+# ---------------------------------------------------------------- aligned safety and sensing
+
+def aligned(exps):
+    """Every experiment has a_u = lambda_u c_u with lambda_u != 0 and c_u != 0."""
+    def par(a, c):
+        if not any(c) or not any(a):
+            return False
+        i = next(t for t, x in enumerate(c) if x)
+        lam = a[i] / c[i]
+        return lam != 0 and all(x == lam * y for x, y in zip(a, c))
+    return all(par(a, c) for a, b, c, dl in exps)
+
+
+def global_conflicts(points, exp):
+    a, b, c, dl = exp
+    v = [dot(c, p) for p in points]
+    return {frozenset((i, j)) for i, j in itertools.combinations(range(len(points)), 2) if abs(v[i] - v[j]) > 2 * dl}
+
+
+def aligned_2sat_trap(points, exps, eps=0):
+    """Theorem AL2. Aligned experiments whose global conflict graph is empty, complete, or a
+    single pair, with |unsafe set| <= 2 for the complete ones. Clauses: complete -> (OR B);
+    single pair {i,j} -> tautology if B meets it, else (not i or not j) (Lemma AL1 rules out
+    the remaining case). Then 2-SAT with x_i = x_j = 1 for each far pair, by Even-Itai-Shamir
+    propagation. Returns a trap bitmask or None."""
+    n = len(points)
+    allpairs = n * (n - 1) // 2
+    pos, negs = [], []
+    for e in exps:
+        a, b, c, dl = e
+        B = [i for i, p in enumerate(points) if dot(a, p) > b]
+        P = global_conflicts(points, e)
+        if not P:
+            continue
+        if len(P) == allpairs:
+            assert len(B) <= 2, "outside the AL2 family"
+            pos.append(tuple(B))
+        elif len(P) == 1:
+            i, j = tuple(next(iter(P)))
+            if i in B or j in B:
+                continue
+            assert not B, "Lemma AL1 violated: an aligned lone pair with a disjoint unsafe set"
+            negs.append((i, j))
+        else:
+            raise ValueError("outside the AL2 family")
+    inst = to_instance(points, exps, eps)
+    for i, j in itertools.combinations(range(n), 2):
+        P = 1 << i | 1 << j
+        if not inst.far(P):
+            continue
+        sol = _two_sat(n, pos, negs, {i: 1, j: 1})
+        if sol is not None:
+            K = sum(1 << t for t in range(n) if sol[t])
+            assert inst.is_trap(K)
+            return K
+    return None
+
+
+def _two_sat(n, pos, negs, forced):
+    """Clauses (x or y) / (not x or not y); a positive clause of length 1 or 0 allowed.
+    Even-Itai-Shamir: propagate a tentative value; keep it if no contradiction arises."""
+    val = dict(forced)
+
+    def propagate(assign):
+        assign = dict(assign)
+        changed = True
+        while changed:
+            changed = False
+            for cl in pos:
+                if any(assign.get(x) == 1 for x in cl):
+                    continue
+                free = [x for x in cl if x not in assign]
+                if not free:
+                    return None
+                if len(free) == 1:
+                    assign[free[0]] = 1
+                    changed = True
+            for x, y in negs:
+                if assign.get(x) == 0 or assign.get(y) == 0:
+                    continue
+                if assign.get(x) == 1 and assign.get(y) == 1:
+                    return None
+                if assign.get(x) == 1 and y not in assign:
+                    assign[y] = 0
+                    changed = True
+                elif assign.get(y) == 1 and x not in assign:
+                    assign[x] = 0
+                    changed = True
+        return assign
+
+    val = propagate(val)
+    if val is None:
+        return None
+    for t in range(n):
+        if t in val:
+            continue
+        nxt = propagate({**val, t: 1}) or propagate({**val, t: 0})
+        if nxt is None:
+            return None
+        val = nxt
+    return [val[t] for t in range(n)]
+
+
+def aligned_sat_u2(nvars, clauses):
+    """Stage 1's sat_u2 realized with ALIGNED experiments (a_u = c_u) on the standard basis of
+    Q^N. Each experiment's projection puts its unsafe set V on top (value M), then encodes the
+    effective conflict pattern on the rest: a lone pair (not both), a star (implication x => V),
+    or all pairs (V must be met). Effective conflicts are the only active ones (Theorem B1)."""
+    from traps import lit
+    nvars = max(nvars, 2)
+    N = 2 * nvars + 2 * len(clauses)
+    M = Fr(10 * N + 10)
+    e = lambda i: tuple(Fr(1) if t == i else Fr(0) for t in range(N))  # noqa: E731
+    pts = [e(i) for i in range(N)]
+
+    def exp(V, g, dl):
+        q = tuple(M * (t in V) + g[t] for t in range(N))
+        return (q, (M + max(g)) / 2 if V else M, q, dl)    # unsafe iff projection > threshold
+
+    exps = []
+
+    def not_both(x, y):
+        exps.append(exp(set(), [Fr(1) if t == x else Fr(-1) if t == y else Fr(0) for t in range(N)], Fr(3, 5)))
+
+    def some(V):
+        exps.append(exp(set(V), [Fr(3 * t) for t in range(N)], Fr(1)))
+
+    def implies(x, V):
+        exps.append(exp(set(V), [Fr(2) if t == x else Fr(0) for t in range(N)], Fr(3, 5)))
+
+    for v in range(nvars):
+        T, F = 2 * v, 2 * v + 1
+        not_both(T, F)
+        some([T, F])
+    for j, c in enumerate(clauses):
+        if not c:
+            some([])
+            continue
+        l = [lit(x) for x in c] + [lit(c[-1])] * (3 - len(c))
+        s, s2 = 2 * nvars + 2 * j, 2 * nvars + 2 * j + 1
+        not_both(s, s2)
+        some([s, s2])
+        implies(s2, [l[0], l[1]])
+        implies(s, [l[2]])
+    return pts, exps
