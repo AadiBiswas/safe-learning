@@ -1,0 +1,20 @@
+A. Boolean formulation = trap enumeration
+  [ok] set-valued observations (minimal conflict sets): 600/600
+  [ok] linear interval observations (pair conflicts): 600/600
+  [ok] unsafe sets of size <= 1 give Horn clauses
+
+B. Planar hardness construction (unit circle), exact
+  [ok] every point on the unit circle; every unsafe set and separated-pair set as intended: 58/58
+  [ok] formula satisfiable <=> trap exists: 58/58, 36 satisfiable, up to 138 parameters
+  [ok] common noise radius by rescaling observation vectors
+
+C. Dimension padding and block sums
+  [ok] zero padding R^d -> R^D leaves the instance unchanged
+  [ok] block sum (p_i, q_i): safety from p, observation from q, exactly
+
+D. XP algorithm in the number of observation lines
+  [ok] k = 1 observation line(s): guessed-extremes box = exhaustive: 300/300
+  [ok] k = 2 observation line(s): guessed-extremes box = exhaustive: 120/120
+
+E. Single-pair separation relations are exactly strictly antipodal pairs
+  [ok] a one-edge separation graph joins the unique min and unique max: 3582 one-edge relations

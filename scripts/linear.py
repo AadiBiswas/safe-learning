@@ -23,10 +23,18 @@ def to_instance(points, exps, eps=0):
     for a, b, c, dl in exps:
         U = sum(1 << i for i, p in enumerate(points) if dot(a, p) > b)
         v = [dot(c, p) for p in points]
-        cand = sorted({x + s * dl for x in v for s in (-1, 1)})
-        cand += [(x + y) / 2 for x, y in zip(cand, cand[1:])]
-        R = {sum(1 << i for i in range(n) if abs(y - v[i]) <= dl) for y in cand}
-        acts.append((U, tuple(r for r in R if r)))
+        # Responses are windows [y - dl, y + dl] of the sorted projections. Only maximal ones
+        # matter (smaller responses are dominated for the adversary), and every maximal
+        # window can be slid until its left end sits on a projection.
+        order = sorted(range(n), key=v.__getitem__)
+        R, hi, mask = set(), 0, 0
+        for lo in range(n):
+            while hi < n and v[order[hi]] - v[order[lo]] <= 2 * dl:
+                mask |= 1 << order[hi]
+                hi += 1
+            R.add(mask)
+            mask &= ~(1 << order[lo])
+        acts.append((U, tuple(sorted(r for r in R if r))))
     return Instance(n, acts, eps=eps)
 
 
@@ -218,3 +226,34 @@ def has_multicolored_clique(classes, edges):
     E = {frozenset(e) for e in edges}
     return any(all(frozenset((p, q)) in E for p, q in itertools.combinations(pick, 2))
                for pick in itertools.product(*classes))
+
+
+# ---------------------------------------------------------------- few observation directions
+
+def obs_lines(exps):
+    """Distinct observation lines (c up to nonzero scaling; widths are sign-symmetric)."""
+    lines = {}
+    for a, b, c, dl in exps:
+        if any(c):
+            lines.setdefault(ray(c) if ray(c) > ray(tuple(-x for x in c)) else ray(tuple(-x for x in c)), c)
+    return list(lines.values())
+
+
+def find_trap_obsdirs(points, exps, eps=0):
+    """XP in the number k of observation lines: guess the extreme parameters of a trap on
+    every line (O(n^{2k}) guesses); the largest set with those extremes is a trap iff any is
+    (Theorem D5). Exact for every dimension and every safety structure."""
+    inst = to_instance(points, exps, eps)
+    n = len(points)
+    C = obs_lines(exps)
+    vals = [[dot(c, p) for p in points] for c in C]
+    for guess in itertools.product(*[itertools.product(range(n), repeat=2) for _ in C]):
+        if any(vals[j][lo] > vals[j][hi] for j, (lo, hi) in enumerate(guess)):
+            continue
+        K = sum(1 << i for i in range(n)
+                if all(vals[j][lo] <= vals[j][i] <= vals[j][hi] for j, (lo, hi) in enumerate(guess)))
+        if inst.far(K) and inst.is_trap(K):
+            return K
+    if not C:                                   # no informative observation at all
+        return inst.full if inst.far(inst.full) else None
+    return None
